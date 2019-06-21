@@ -1,0 +1,530 @@
+html,body,header,main,section,div,span,footer{
+    padding: 0;
+    margin: 0;
+}
+
+header > .parent,
+footer > .parent,
+main > .parent{
+    padding: 10px 15%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: rgb(73, 158, 255);
+    flex-grow: 1;
+}
+
+header > .contact > .phone,
+header > .contact > .email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    padding-right: 30px;
+    border-right: 1px solid rgb(255, 255, 255);
+    font-size: 80%;
+}
+
+header > .contact > .email{
+    padding-left: 30px;
+    padding-right: 0px;
+    border: unset;
+}
+
+header > .contact > .socials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+header > .contact > .socials > .social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(230, 230, 230);
+    border: 0.3px solid rgb(110, 178, 255);
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+header > .contact > .socials > .social > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+header > .contact > .socials > .social:not(:last-child){
+    margin-right: 20px;
+}
+
+header > .site,
+header > .navigation{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header > .site > .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 90px;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+header > .site > .logo > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: fill;
+    z-index: 1;
+}
+
+header > .site > .about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    flex-wrap: wrap;
+    background: rgb(247, 247, 247);
+    padding: 20px 0px 20px 15px;
+}
+
+header > .site > .about > *{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+header > .site > .about > *:not(:last-child){
+    margin-right: 20px;
+}
+
+header > .site > .about > * > .icon{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    margin-right: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+header > .site > .about > * > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+header > .site > .about > * > .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 120px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 80%;
+}
+
+header > .navigation{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(65, 65, 65);
+    background-image: linear-gradient(to bottom,rgb(77, 77, 77) 8%,rgb(32, 32, 32) 93%);
+}
+
+header > .navigation > nav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: transparent;
+    flex-wrap: wrap;
+}
+
+header > .navigation > nav > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 85%;
+    font-weight: 600;
+    text-decoration: unset;
+    transition: all 0.3s linear;
+}
+
+header > .navigation > nav > a:not(:last-child){
+    margin-right: 25px;
+}
+
+header > .navigation > nav > a.active,
+header > .navigation > nav > a:hover{
+    color: rgb(73, 158, 255);
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+main > .parent.form{
+    background-color: rgb(255,255,255);
+    align-items: flex-start;
+    padding-top: unset;
+}
+
+main > .parent.form > .container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247,247,247);
+    padding: 10px 30px;
+    flex-wrap: wrap;
+}
+
+main > .parent.form > .container > .input{
+    display: flex;
+    width: 320px;
+    flex-wrap: wrap;
+    margin: 0 20px 15px 0;
+}
+
+main > .parent.form > .container > .input > *{
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+main > .parent.form > .container > .input > *:last-child{
+    margin-bottom: unset;
+}
+
+main > .parent.form > .container > .input > label{
+    color: rgb(63, 63, 63);
+    font-size: 80%;
+    font-weight: 600;
+}
+
+main > .parent.form > .container > .input > .error{
+    color: rgb(252, 29, 29);
+    font-size: 80%;
+    font-weight: 300;
+}
+
+main > .parent.form > .container > .input > input,
+main > .parent.form > .container > .input > select{
+    height: 32px;
+    border: 0.3px solid rgb(161, 161, 161);
+    border-radius: 5px;
+    outline-style: unset;
+}
+
+main > .parent.form > .container > .input > textarea{
+    height: 80px;
+    border: 0.3px solid rgb(161, 161, 161);
+    border-radius: 5px;
+    outline-style: unset;
+}
+
+main > .parent.form > .container > .submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+main > .parent.form > .container > .submit > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(73, 158, 255);
+    border: 0.1px solid rgb(161, 161, 161);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+main > .parent.form > .container > .submit > button:hover:not(:disabled){
+    background-color: rgb(26, 117, 221);
+}
+
+main > .parent.form > .container > .submit > button:disabled{
+    background: rgb(161, 161, 161);
+    cursor: not-allowed;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+    padding-top: 25px;
+    background: rgb(247, 247, 247);
+}
+
+.header > .title,
+.header > .subtitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 900;
+    font-size: 130%;
+    text-align: center;
+}
+
+.header > .subtitle{
+    font-size: 100%;
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+footer > #article{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background: rgb(32, 32, 32);
+    border-top: 5px solid rgb(110, 178, 255);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+footer > #article > *{
+    display: flex;
+    justify-content: flex-start;
+    color: #d3d3d3;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+footer > #article > article{
+    display: flex;
+    padding-bottom: 10px;
+    color: rgb(247, 247, 247);
+    justify-content: flex-start;
+    color: #d3d3d3;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+footer > #article > article > *{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+footer > #article > aside{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+footer > #article > aside > .socials{
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+footer > #article > aside > .socials > .social{
+    display: flex;
+    align-items: center;
+    background: rgb(230, 230, 230);
+    border: 0.3px solid rgb(110, 178, 255);
+    width: 35px;
+    height: 35px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 10px 10px 0;
+}
+
+footer > #article > aside > .socials > .social > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+footer > #copy{
+    background: rgb(0, 0, 0);
+    color: rgb(110, 178, 255);
+}
+
+footer > #copy > *{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/*Mobile devices*/
+@media screen and (max-width: 599px){
+    header > .parent,
+    footer > .parent,
+    main > .parent{
+        padding: 10px 3%;
+    }
+
+    header > .contact > .phone,
+    header > .contact > .email{
+        flex-grow: 1;
+        border: unset;
+    }
+
+    header > .contact > .email{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    header > .contact > .socials{
+        display: none;
+    }
+
+    header > .site > .about{
+        display: none;
+    }
+
+    header > .navigation{
+        flex-grow: 1;
+    }
+
+    header > .navigation > nav{
+        flex-grow: 1;
+    }
+
+    header > .navigation > nav > a{
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header > .navigation > nav > a:not(:last-child){
+        margin-right: unset;
+    }
+
+    main > .parent.form > .container{
+        padding: 10px 10px;
+    }
+
+    main > .parent.form > .container > .input{
+        width: auto;
+        flex-grow: 1;
+        margin: 0 0 15px 0;
+    }
+}
+
+/*Tablets, ipads and other bigger devces*/
+@media screen and (min-width: 600px) and (max-width: 999px){
+    header > .parent,
+    footer > .parent,
+    main > .parent{
+        padding: 10px 6%;
+    }
+
+    header > .contact > .phone,
+    header > .contact > .email{
+        margin: unset;
+        white-space: normal;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        width: 45%;
+        justify-content: flex-end;
+        padding-right: 4%;
+    }
+
+    header > .contact > .email{
+        padding-right: unset;
+        padding-left: 4%;
+        justify-content: flex-start;
+    }
+
+    header > .contact > .socials{
+        width: 100%;
+        margin-left: unset;
+    }
+
+    header > .site,
+    header > .navigation{
+        flex-wrap: wrap;
+    }
+
+    header > .site > .about{
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    header > .site > .about > *{
+        flex-wrap: wrap;
+    }
+
+    header > .site > .about > * > .icon{
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    header > .site > .about > * > .content{
+        width: 100%;
+    }
+
+    header > .navigation{
+        justify-content: center;
+    }
+
+    header > .navigation > nav{
+        justify-content: center;
+    }
+
+    main > .parent.form > .container{
+        padding: 10px 15px;
+    }
+
+    main > .parent.form > .container > .input{
+        width: 270px;
+        margin: 0 15px 15px 0;
+    }
+}
