@@ -288,16 +288,22 @@ main > .parent.form > .container > .submit > button:disabled{
 }
 
 main > #login.parent.form > .container,
-main > #verify-token.parent.form > .container{
+main > #verify-token.parent.form > .container,
+main > #update-password.parent.form > .container{
     flex-direction: column;
 }
 
 main > #forgot-password.parent.form > .header > .subtitle,
-main > #verify-token.parent.form > .header > .subtitle{
+main > #verify-token.parent.form > .header > .subtitle,
+main > #update-password.parent.form > .header > .subtitle{
     color: rgb(206, 0, 0);
     font-style: normal;
     font-size: 75%;
     margin-top: 15px;
+}
+
+main > #update-password.parent.form > .header > .subtitle{
+    color: rgb(0, 206, 0);
 }
 
 .header{
