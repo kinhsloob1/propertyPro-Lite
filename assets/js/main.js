@@ -532,6 +532,103 @@ class LoginPage {
     }
 }
 
+class ForgotPasswordPage {
+    constructor() {
+        this._hasBindedEvents = 0;
+    }
+
+    get hasBindedEvents() {
+        return this._hasBindedEvents;
+    }
+
+    bindEvents() {
+        if (!this.hasBindedEvents) {
+            let events = ['change', 'blur', 'keypress', 'keydown', 'keyup', 'focus'],
+                form = document.querySelector('#forgot-password > .container'),
+                submitButton = form.querySelector('.submit > button'),
+                setError = (input, error) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (!errorNode) {
+                        errorNode = document.createElement('div');
+                        errorNode.classList.add('error');
+                        input.parentNode.insertBefore(errorNode, input);
+                    }
+
+                    input.parentNode.dataset.isValid = 'false';
+                    input.style.border = '0.2px solid rgb(255,0,0)';
+                    errorNode.textContent = error;
+                },
+                removeError = (input) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (errorNode) {
+                        input.parentNode.removeChild(errorNode);
+                    }
+                },
+                makeValid = (input) => {
+                    input.parentNode.dataset.isValid = true;
+                    input.style.border = '0.2px solid rgb(90,90,90)';
+                },
+                isFormValid = () => {
+                    let inputs = form.querySelectorAll('.input:not([data-is-valid]), .input[data-is-valid="false"]');
+                    return !inputs.length;
+                },
+                handleSubmitButton = () => {
+                    if (isFormValid()) {
+                        submitButton.removeAttribute('disabled');
+                    } else {
+                        if (!submitButton.hasAttribute('disabled')) {
+                            submitButton.setAttribute('disabled', 'disabled');
+                        }
+                    }
+                },
+                email = form.querySelector('.input > input[name="email"]'),
+                email_timer,
+                email_change_handler = function (e) {
+                    if (email_timer) {
+                        clearTimeout(email_timer);
+                    }
+
+                    email_timer = setTimeout(() => {
+                        let value = String(this.value);
+                        if (value.match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/)) {
+                            removeError(this);
+                            makeValid(this);
+                            return;
+                        }
+
+                        setError(this, 'Invalid email. please insert registered email address');
+                        return;
+                    }, 300);
+                },
+                form_timer,
+                form_change_handler = function (e) {
+                    if (form_timer) {
+                        clearTimeout(form_timer);
+                    }
+
+                    form_timer = setTimeout(() => {
+                        handleSubmitButton();
+                    }, 500);
+                };
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+            });
+
+            events.forEach((event) => {
+                email.addEventListener(event, email_change_handler);
+                form.addEventListener(event, form_change_handler);
+            });
+
+            this._hasBindedEvents = true;
+        }
+    }
+
+    init() {
+        this.bindEvents();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -549,5 +646,12 @@ class Pages {
             this._loginPage = new LoginPage();
         }
         return this._loginPage;
+    }
+
+    get forgotPasswordPage() {
+        if (typeof this._forgotPasswordPage !== 'object') {
+            this._forgotPasswordPage = new ForgotPasswordPage();
+        }
+        return this._forgotPasswordPage;
     }
 }
