@@ -287,6 +287,10 @@ main > .parent.form > .container > .submit > button:disabled{
     cursor: not-allowed;
 }
 
+main > #login.parent.form > .container{
+    flex-direction: column;
+}
+
 .header{
     width: 100%;
     display: flex;
