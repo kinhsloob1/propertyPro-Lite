@@ -1000,7 +1000,7 @@ class PostPropertyPage {
                     input.parentNode.dataset.isValid = true;
                     input.style.border = '0.2px solid rgb(90,90,90)';
                 },
-                form = document.querySelector('#postProperty > .container'),
+                form = document.querySelector('main > .parent.form > form.container'),
                 submitButton = form.querySelector('.submit > button'),
                 imageInputContainer = form.querySelector('.input.image'),
                 imagesHolder = imageInputContainer.querySelector('.holder'),
@@ -1197,6 +1197,45 @@ class PostPropertyPage {
     }
 }
 
+class EditPropertyPage extends PostPropertyPage {
+    constructor() {
+        super()
+    }
+
+    bindEvents() {
+        let removeButtons = document.querySelectorAll('main > .parent.form > form.container > .input.image > .holder > .image > button.remove');
+
+        if (removeButtons.length) {
+            removeButtons.forEach((removeButton,index) => {
+                let parent = removeButton.parentNode,
+                    image = parent.querySelector('img'),
+                    src = image.dataset.src;
+
+                image.onload = function () {
+                    let data = {'src': src};
+                    parent.____arrayBuffer = data;
+                };
+
+                image.onerror = function () {
+                    parent.parentNode.removeChild(parent);
+                };
+
+                image.src = src;
+                removeButton.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    removeButton.parentNode.parentNode.removeChild(removeButton.parentNode);
+                });
+            });
+        }
+
+        super.bindEvents();
+    }
+
+    init() {
+        super.init();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -1256,5 +1295,12 @@ class Pages {
             this._postPropertyPage = new PostPropertyPage();
         }
         return this._postPropertyPage;
+    }
+
+    get editPropertyPage() {
+        if (typeof this._editPropertyPage !== 'object') {
+            this._editPropertyPage = new EditPropertyPage();
+        }
+        return this._editPropertyPage;
     }
 }
