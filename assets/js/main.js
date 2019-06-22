@@ -726,6 +726,135 @@ class VerifyTokenPage {
     }
 }
 
+class UpdatePasswordPage {
+    constructor() {
+        this._hasBindedEvents = 0;
+    }
+
+    get hasBindedEvents() {
+        return this._hasBindedEvents;
+    }
+
+    bindEvents() {
+        if (!this.hasBindedEvents) {
+            let events = ['change', 'blur', 'keypress', 'keydown', 'keyup', 'focus'],
+                form = document.querySelector('#update-password > .container'),
+                submitButton = form.querySelector('.submit > button'),
+                setError = (input, error) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (!errorNode) {
+                        errorNode = document.createElement('div');
+                        errorNode.classList.add('error');
+                        input.parentNode.insertBefore(errorNode, input);
+                    }
+
+                    input.parentNode.dataset.isValid = 'false';
+                    input.style.border = '0.2px solid rgb(255,0,0)';
+                    errorNode.textContent = error;
+                },
+                removeError = (input) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (errorNode) {
+                        input.parentNode.removeChild(errorNode);
+                    }
+                },
+                makeValid = (input) => {
+                    input.parentNode.dataset.isValid = true;
+                    input.style.border = '0.2px solid rgb(90,90,90)';
+                },
+                isFormValid = () => {
+                    let inputs = form.querySelectorAll('.input:not([data-is-valid]), .input[data-is-valid="false"]');
+                    return !inputs.length;
+                },
+                handleSubmitButton = () => {
+                    if (isFormValid()) {
+                        submitButton.removeAttribute('disabled');
+                    } else {
+                        if (!submitButton.hasAttribute('disabled')) {
+                            submitButton.setAttribute('disabled', 'disabled');
+                        }
+                    }
+                },
+                password = form.querySelector('.input > input[name="password"]'),
+                password_timer,
+                password_change_handler = function (e) {
+                    if (password_timer) {
+                        clearTimeout(password_timer);
+                    }
+
+                    password_timer = setTimeout(() => {
+                        let value = String(this.value);
+                        if (value.length >= 3) {
+                            if (value.length > 255) {
+                                setError(this, 'Password should be below 255 characters');
+                                return;
+                            }
+
+                            removeError(this);
+                            makeValid(this);
+                            return;
+                        }
+
+                        setError(this, 'Password should be above 3 characters');
+                        return;
+                    }, 300);
+                },
+                confirmPassword = form.querySelector('.input > input[name="confirmPassword"]'),
+                confirmPassword_timer,
+                confirmPassword_change_handler = function (e) {
+                    if (confirmPassword_timer) {
+                        clearTimeout(confirmPassword_timer);
+                    }
+
+                    confirmPassword_timer = setTimeout(() => {
+                        let value = String(this.value),
+                            passwordElement = form.querySelector('input[name="password"]');
+
+                        if (!(passwordElement && (passwordElement.parentNode.dataset.isValid == 'true'))) {
+                            setError(this, 'Please insert your password in the passowrd field first');
+                            return;
+                        }
+
+                        if (passwordElement.value !== value) {
+                            setError(this, 'Passwords do not match... please try again');
+                            return;
+                        }
+
+                        removeError(this);
+                        makeValid(this);
+                        return;
+                    }, 300);
+                },
+                form_timer,
+                form_change_handler = function (e) {
+                    if (form_timer) {
+                        clearTimeout(form_timer);
+                    }
+
+                    form_timer = setTimeout(() => {
+                        handleSubmitButton();
+                    }, 500);
+                };
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+            });
+
+            events.forEach((event) => {
+                password.addEventListener(event, password_change_handler);
+                confirmPassword.addEventListener(event, confirmPassword_change_handler);
+                form.addEventListener(event, form_change_handler);
+            });
+
+            this._hasBindedEvents = true;
+        }
+    }
+
+    init() {
+        this.bindEvents();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -757,5 +886,12 @@ class Pages {
             this._verifyTokenPage = new VerifyTokenPage();
         }
         return this._verifyTokenPage;
+    }
+
+    get updatePasswordPage() {
+        if (typeof this._updatePasswordPage !== 'object') {
+            this._updatePasswordPage = new UpdatePasswordPage();
+        }
+        return this._updatePasswordPage;
     }
 }
