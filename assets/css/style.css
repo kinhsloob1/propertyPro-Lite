@@ -287,11 +287,13 @@ main > .parent.form > .container > .submit > button:disabled{
     cursor: not-allowed;
 }
 
-main > #login.parent.form > .container{
+main > #login.parent.form > .container,
+main > #verify-token.parent.form > .container{
     flex-direction: column;
 }
 
-main > #forgot-password.parent.form > .header > .subtitle{
+main > #forgot-password.parent.form > .header > .subtitle,
+main > #verify-token.parent.form > .header > .subtitle{
     color: rgb(206, 0, 0);
     font-style: normal;
     font-size: 75%;
