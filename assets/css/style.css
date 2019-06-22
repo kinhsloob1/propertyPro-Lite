@@ -306,6 +306,672 @@ main > #update-password.parent.form > .header > .subtitle{
     color: rgb(0, 206, 0);
 }
 
+section#filter{
+    background-color: rgb(65, 65, 65);
+    background-image: url('https://photos.purplebricks.ca/photos/public/for_sale/201904/850289/bungalow-stony-plain-1600-10034703.jpg');
+    background-position: center;
+    background-size: cover;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+section#filter > .container{
+    display: flex;
+    width: 100%;
+    border: 4px solid rgb(73, 158, 255);
+    border-radius: 3px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+section#filter > .container > .sections,
+section#filter > .container > .sections > .types,
+section#filter > .container > .search{
+    padding: 3px;
+    background: rgb(73, 158, 255);
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 25%;
+}
+
+section#filter > .container > .sections > .title,
+section#filter > .container > .sections > .title > .header,
+section#filter > .container > .sections > .title > .content{
+    display: flex;
+    width: 100%;
+    word-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+section#filter > .container > .sections > .title{
+    margin-bottom: 15px;
+}
+
+section#filter > .container > .sections > .title > .header{
+    font-weight: 300;
+    font-size: 70%;
+}
+
+section#filter > .container > .sections > .title > .content{
+    font-weight: 900;
+    font-size: 130%;
+}
+
+section#filter > .container > .sections > .types{
+    width: 100%;
+}
+
+section#filter > .container > .sections > .types > .section{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 0.2px solid rgb(233, 233, 233);
+    flex-wrap: wrap;
+    width: 50%;
+    flex-direction: column;
+    padding: 12px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+section#filter > .container > .sections > .types > .section.all{
+    width: 100%;
+}
+
+section#filter > .container > .sections > .types > .section > .icon{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+section#filter > .container > .sections > .types > .section > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+section#filter > .container > .sections > .types > .section > .name{
+    font-size: 100%;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+    letter-spacing: 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+section#filter > .container > .sections > .types > .section.active,
+section#filter > .container > .sections > .types > .section:hover{
+    background: rgb(77, 125, 179);
+}
+
+section#filter > .container > .search{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px 25px;
+    background: rgb(255, 255, 255);
+    border: 3px solid rgb(73, 158, 255);
+}
+
+section#filter > .container > .search > .text-search{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .text-search > .label{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > .text-search > .label > .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+section#filter > .container > .search > .text-search > .label > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+section#filter > .container > .search > .text-search > .label > .text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    font-weight: 800;
+    font-size: 100%;
+    letter-spacing: 2px;
+}
+
+section#filter > .container > .search > .text-search > input,
+section#filter > .container > .search > .price > input{
+    display: flex;
+    flex-grow: 1;
+    height: 32px;
+    border-radius: 3px;
+    color: rgb(65, 65, 65);
+    border: 0.5px solid rgb(156, 156, 156);
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > select{
+    display: flex;
+    flex-grow: 1;
+    height: 32px;
+    border-radius: 3px;
+    color: rgb(65, 65, 65);
+    border: 0.5px solid rgb(156, 156, 156);
+    min-width: 30%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .price{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .price > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+section#filter > .container > .search > .price > .label{
+    flex-grow: unset;
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > .submit{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .submit > button{
+    display: inline-flex;
+    width: auto;
+    background: rgb(73, 158, 255);
+    padding: 10px;
+    font-size: 90%;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: unset;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+section#filter > .container > .search > .submit > button:hover{
+    background: rgb(110, 178, 255);
+}
+
+section#properties{
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    padding-top: 30px;
+}
+
+section#properties > .container{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+section#properties > .container > .property{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 280px;
+    margin: 0 10px 20px 0;
+    border-radius: 8px;
+    border: 0.3px solid rgb(156, 156, 156);
+    transition: all 0.2s ease-in;
+}
+
+section#properties > .container > .property:hover{
+    box-shadow: 4px 4px 5px rgb(206, 206, 206);
+}
+
+section#properties > .container > .property > .display{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+section#properties > .container > .property > .display > .screen,
+section#properties > .container > .property > .display > .screen > img{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(32, 32, 32);
+}
+
+section#properties > .container > .property > .display > .screen > img{
+    z-index: 2;
+    background-color: unset;
+    object-fit: cover;
+}
+
+section#properties > .container > .property > .display > .tags{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 3;
+    background: transparent;
+    top: 20px;
+    left: 0;
+}
+
+section#properties > .container > .property > .display > .tags > *{
+    padding: 5px 9px;
+    font-size: 70%;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    color: rgb(247, 247, 247);
+    margin: 0 10px 10px 0;
+    border-radius: 3px;
+}
+
+section#properties > .container > .property > .display > .tags > .rent{
+    background: rgb(0, 81, 187);
+}
+
+section#properties > .container > .property > .display > .tags > .sale{
+    background: rgb(26, 156, 0);
+}
+
+section#properties > .container > .property > .display > .tags > .hot{
+    background: rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .display > .amount{
+    display: flex;
+    max-width: 100%;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 5;
+    background-color: rgba(32, 32, 32,0.9);
+    left: 0;
+    bottom: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 100%;
+    font-weight: 900;
+    padding: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+section#properties > .container > .property > .display > .amount::before{
+    content: '\20a6';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+section#properties > .container > .property > .preview{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 10px 0 10px;
+    flex-wrap: wrap;
+}
+
+section#properties > .container > .property > .preview > *{
+    display: flex;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    background-color: rgba(206, 206, 206,0.7);
+    flex-wrap: wrap;
+}
+
+section#properties > .container > .property > .details > .description{
+    width: 100%;
+    display: flex;
+    padding: 10px 3px;
+    font-size: 85%;
+    font-weight: 500;
+    text-align: center;
+}
+
+section#properties > .container > .property > .details > .others{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 20px;
+    border-radius: 0 0 8px 8px;
+    background-color: rgb(110, 178, 255);
+    font-size: 80%;
+    font-weight: 500;
+}
+
+section#properties > .container > .property > .details > .others > .facilities{
+    max-width: 85%;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: transparent;
+    align-items: stretch;
+    border-radius: 0 0 0 8px;
+    overflow: hidden;
+}
+
+section#properties > .container > .property > .details > .others > .facilities > * {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .facilities > *:last-child{
+    margin-right: unset;
+}
+
+section#properties > .container > .property > .details > .others > .options{
+    width: 14%;
+    margin-left: auto;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 6;
+    cursor: pointer;
+    border-radius: 0 0 8px 0;
+}
+
+section#properties > .container > .property > .details > .others > .options:first-child{
+    border-radius: 0 0 8px 0;
+    overflow: hidden;
+}
+
+section#properties > .container > .property > .details > .others > .options > *{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container{
+    display: none;
+    width: 110px;
+    z-index: 7;
+    position: absolute;
+    bottom: -10px;
+    right: -20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    border-bottom: 0.1px solid rgb(211, 211, 211);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > button,
+section#properties > .container > .property > .details > .others > .options > .container > .report{
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > button:hover,
+section#properties > .container > .property > .details > .others > .options > .container > .report:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+section#properties > .container > .property > .details > .others > .options:hover > .container{
+    display: flex;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .delete{
+    background: rgb(206, 0, 0);
+    color: rgb(247, 247, 247);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .delete:hover{
+    background: rgb(139, 1, 1);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report{
+    position: relative;
+    z-index: 7;
+    color: rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > *{
+    width: 100%;
+    display: flex;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container{
+    display: none;
+    width: 160px;
+    z-index: 8;
+    position: absolute;
+    bottom: 0;
+    left: -160px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    color: rgb(58, 58, 58);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .brief{
+    font-size: 90%;
+    font-weight: 500;
+    padding: 10px 8px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > select,
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > textarea{
+    display: flex;
+    padding: unset;
+    margin-bottom: 3px;
+    height: 32px;
+    border-radius: unset;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > textarea{
+    height: 70px;
+    margin-bottom: unset;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit{
+    background-color: rgb(156, 156, 156);
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit:hover{
+    background-color: rgb(58, 150, 255);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report:hover > .container{
+    display: flex;
+}
+
+section#propertiesMap{
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    width: 100%;
+}
+
+section#propertiesMap > .container{
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 300px;
+    background-color: rgb(247, 247, 247);
+}
+
 .header{
     width: 100%;
     display: flex;
@@ -475,6 +1141,101 @@ footer > #copy > *{
         flex-grow: 1;
         margin: 0 0 15px 0;
     }
+
+    section#filter > .container > .sections,
+    section#filter > .container > .sections > .types,
+    section#filter > .container > .search{
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    section#filter > .container > .sections > .types{
+        justify-content: center;
+    }
+
+    section#filter > .container > .sections > .types > .section{
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > *{
+        display: flex;
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > .section.all{
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .name{
+        width: 100%;
+        white-space: normal;
+        word-wrap: break-word;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search{
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .text-search > .label{
+        width: 100%;
+        margin-right: unset;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .text-search > input,
+    section#filter > .container > .search > .price > input{
+        width: 100%;
+        margin-right: unset;
+    }
+
+    section#filter > .container > .search > select{
+        width: 100%;
+        margin-right: unset;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .price{
+        margin-bottom: unset;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .price > *{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .price > .label{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    section#filter > .container > .search > .submit{
+        justify-content: center;
+    }
+
+    section#properties{
+        overflow: auto;
+    }
+
+    section#properties > .container > .property{
+        margin: 0 0 15px 0;
+    }
+
+    section#properties > .container > .property > .preview > *{
+        width: 25px;
+        height: 25px;
+    }
 }
 
 /*Tablets, ipads and other bigger devces*/
@@ -545,5 +1306,64 @@ footer > #copy > *{
     main > .parent.form > .container > .input{
         width: 270px;
         margin: 0 15px 15px 0;
+    }
+
+    section#filter > .container > .sections,
+    section#filter > .container > .sections > .types,
+    section#filter > .container > .search{
+        width: 100%;
+    }
+
+    section#filter > .container > .sections > .types{
+        justify-content: center;
+    }
+
+    section#filter > .container > .sections > .types > .section{
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > *{
+        display: flex;
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > .section.all{
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .icon{
+        width: 50px;
+        height: 50px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .name{
+        width: 100%;
+        white-space: normal;
+        word-wrap: break-word;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .submit{
+        justify-content: center;
+    }
+
+    section#services > .container > .service > .icon{
+        width: 45px;
+        height: 45px;
+    }
+
+    section#properties > .container > .property{
+        width: 250px;
+    }
+
+    section#properties > .container > .property > .details > .others > .options > .container{
+        width: 100px;
+    }
+
+    section#properties > .container > .property > .details > .others > .options > .container > .report > .container{
+        width: 140px;
+        left: -140px;
     }
 }
