@@ -1236,6 +1236,16 @@ class EditPropertyPage extends PostPropertyPage {
     }
 }
 
+class LandingPage extends PropertiesPage{
+    constructor() {
+        super();
+    }
+
+    init() {
+        super.init();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -1302,5 +1312,12 @@ class Pages {
             this._editPropertyPage = new EditPropertyPage();
         }
         return this._editPropertyPage;
+    }
+
+    get landingPage() {
+        if (typeof this._landingPage !== 'object') {
+            this._landingPage = new LandingPage();
+        }
+        return this._landingPage;
     }
 }
