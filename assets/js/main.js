@@ -949,6 +949,23 @@ class PropertiesPage {
     }
 }
 
+class PropertyPage {
+    constructor() {
+
+    }
+
+    get propertiesPage() {
+        if (typeof this._propertiesPage !== 'object') {
+            this._propertiesPage = new PropertiesPage();
+        }
+        return this._propertiesPage;
+    }
+
+    init() {
+        this.propertiesPage.loadProperties();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -994,5 +1011,12 @@ class Pages {
             this._propertiesPage = new PropertiesPage();
         }
         return this._propertiesPage;
+    }
+
+    get propertyPage() {
+        if (typeof this._propertyPage !== 'object') {
+            this._propertyPage = new PropertyPage();
+        }
+        return this._propertyPage;
     }
 }

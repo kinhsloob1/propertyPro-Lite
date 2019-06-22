@@ -972,6 +972,281 @@ section#propertiesMap > .container{
     background-color: rgb(247, 247, 247);
 }
 
+#viewProperty{
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+#viewProperty > *{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: hidden;
+}
+
+#viewProperty > .title{
+    font-size: 200%;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    white-space: wrap;
+    word-wrap: break-word;
+    padding: 10px 0 10px 0;
+}
+
+#viewProperty > .images{
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+#viewProperty > .images > .screen{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 350px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#viewProperty > .images > .screen > img{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+#viewProperty > .images > .screen > .properties{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 10px 5px;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    background: rgba(0,0,0,0.8);
+    bottom: 0;
+    left: 0;
+}
+
+#viewProperty > .images > .screen > .properties > *,
+#viewProperty > .images > .screen > .properties > .actions > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255,255,255);
+    font-size: 100%;
+    font-weight: 400;
+    margin-right: 20px
+}
+
+#viewProperty > .images > .screen > .properties > .price{
+    width: 100%;
+    font-size: 150%;
+    font-weight: 600;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-right: unset;
+}
+
+#viewProperty > .images > .screen > .properties > .price::before{
+    content: '\20a6';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+#viewProperty > .images > .screen > .properties > .price > .type{
+    display: flex;
+    margin-left: 8px;
+    text-transform: uppercase;
+    align-content: center;
+}
+
+#viewProperty > .images > .screen > .properties > .address{
+    display: flex;
+    text-transform: uppercase;
+    align-content: center;
+    margin-right: unset;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+#viewProperty > .images > .screen > .properties > .actions{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > *{
+    background: transparent;
+    display: flex;
+    color: rgb(73, 158, 255);
+    border: unset;
+    cursor: pointer;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report{
+    position: relative;
+    z-index: 5;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .delete{
+    color: rgb(190,0,0);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container{
+    display: none;
+    position: absolute;
+    right: -300px;
+    width: 300px;
+    bottom: 0;
+    z-index: 6;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 5px rgb(58, 58, 58);
+    padding: 10px 10px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    color: rgb(58, 58, 58);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .brief{
+    font-size: 90%;
+    font-weight: 500;
+    padding: 10px 8px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > select,
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > textarea{
+    display: flex;
+    padding: unset;
+    margin-bottom: 3px;
+    height: 32px;
+    border-radius: unset;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > textarea{
+    height: 90px;
+    margin-bottom: unset;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit{
+    background-color: rgb(156, 156, 156);
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    cursor: pointer;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit:hover{
+    background-color: rgb(58, 150, 255);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report:hover > .container{
+    display: flex;
+}
+
+#viewProperty > .images > .folder{
+    background: rgba(0,0,0);
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#viewProperty > .images > .folder > *{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#viewProperty > .description{
+    font-size: 100%;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+#viewProperty > .agent-contact{
+    background: rgb(73, 158, 255);
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+#viewProperty > .agent-contact > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 120%;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
 .header{
     width: 100%;
     display: flex;
@@ -1235,6 +1510,21 @@ footer > #copy > *{
     section#properties > .container > .property > .preview > *{
         width: 25px;
         height: 25px;
+    }
+
+    #viewProperty > .images > .screen > .properties > .actions > .report > .container{
+        display: none;
+        right: -240px;
+        width: 240px;
+    }
+
+    #viewProperty > .images > .folder > *{
+        display: flex;
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        margin-right: 10px;
+        cursor: pointer;
     }
 }
 
