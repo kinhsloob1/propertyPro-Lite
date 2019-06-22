@@ -1247,6 +1247,175 @@ section#propertiesMap > .container{
     margin: 0 0 15px 0;
 }
 
+#postProperty > .rules{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background: rgb(247, 247, 247);
+    list-style-type: disc;
+    align-items: stretch;
+}
+
+#postProperty > .rules > *{
+    display: flex;
+    width: 100%;
+    font-size: 80%;
+    font-weight: 400;
+    align-items: center;
+}
+
+#postProperty > .rules > *::before{
+    content: '*';
+    display: flex;
+    margin-right: 3px;
+    align-items: center;
+}
+
+#postProperty > .rules > *:not(:last-child){
+    margin-bottom: 12px;
+}
+
+#postProperty > .container > .input{
+    width: 100%;
+}
+
+#postProperty > .container > .input.image{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#postProperty > .container > .input > *{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#postProperty > .container > .input.image > .holder{
+    padding: 20px 10px;
+    align-items: stretch;
+    justify-content: center;
+}
+
+#postProperty > .container > .input.image > .holder > .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 180px;
+    height: 250px;
+    overflow: hidden;
+    border: 5px dashed rgb(73, 158, 255);
+    border-style: groove;
+    border-radius: 15px;
+    background: rgb(100,100,100);
+    z-index: 0;
+    margin: 0 10px 10px 0;
+}
+
+#postProperty > .container > .input.image > .holder > .image > img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+
+#postProperty > .container > .input.image > .holder > .image > .remove{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: rgb(255,0,0);
+    font-size: 160%;
+    font-weight: 800;
+    border: unset;
+}
+
+#postProperty > .container > .input.image > label,
+#postProperty > .container > .input.image > .error{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#postProperty > .container > .input.image > .item{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#postProperty > .container > .input.image > .item > label,
+#postProperty > .container > .input.image > .item > input{
+    font-size: 80%;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: 200px;
+    height: 100%;
+    background: rgb(73, 158, 255);
+    border-radius: 10px;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    text-align: center;
+}
+
+#postProperty > .container > .input.image > .item > input:hover:not(:disabled),
+#postProperty > .container > .input.image > .item > input:hover:not(:disabled) ~ label{
+    cursor: pointer;
+    background: rgb(0, 79, 168);
+}
+
+#postProperty > .container > .input.image > .item > input:disabled,
+#postProperty > .container > .input.image > .item > input:disabled ~ label{
+    background: rgb(100,100,100);
+    cursor: not-allowed;
+}
+
+#postProperty > .container > .input.image > .item > input{
+    opacity: 0
+}
+
+#postProperty > .container > .input > label,
+#postProperty > .container > .input > input,
+#postProperty > .container > .input > select,
+#postProperty > .container > .input > textarea,
+#postProperty > .container > .input > div.error{
+    width: 60%;
+}
+
+#postProperty > .container > .input{
+    justify-content: center;
+    align-items: center;
+}
+
 .header{
     width: 100%;
     display: flex;

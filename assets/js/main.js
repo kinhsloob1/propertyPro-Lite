@@ -966,6 +966,237 @@ class PropertyPage {
     }
 }
 
+class PostPropertyPage {
+    constructor() {
+        this._hasBindedEvents = 0;
+    }
+
+    get hasBindedEvents() {
+        return this._hasBindedEvents;
+    }
+
+    bindEvents() {
+        if (!this.hasBindedEvents) {
+            let events = ['change', 'blur', 'keypress', 'keydown', 'keyup', 'focus'],
+                setError = (input, error) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (!errorNode) {
+                        errorNode = document.createElement('div');
+                        errorNode.classList.add('error');
+                        input.parentNode.insertBefore(errorNode, input);
+                    }
+
+                    input.parentNode.dataset.isValid = 'false';
+                    input.style.border = '0.2px solid rgb(255,0,0)';
+                    errorNode.textContent = error;
+                },
+                removeError = (input) => {
+                    let errorNode = input.parentNode.querySelector('.error');
+                    if (errorNode) {
+                        input.parentNode.removeChild(errorNode);
+                    }
+                },
+                makeValid = (input) => {
+                    input.parentNode.dataset.isValid = true;
+                    input.style.border = '0.2px solid rgb(90,90,90)';
+                },
+                form = document.querySelector('#postProperty > .container'),
+                submitButton = form.querySelector('.submit > button'),
+                imageInputContainer = form.querySelector('.input.image'),
+                imagesHolder = imageInputContainer.querySelector('.holder'),
+                imageInputs = imageInputContainer.querySelector('input[type="file"]'),
+                files = [],
+                handleFiles = () => {
+                    for (let current = 0, filesLength = files.length; current < filesLength; current++) {
+                        if (!(files[current].type.match(/^image\/\S{2,}$/) && (files[current].size < Math.pow(1024, 2)))) {
+                            files[current] = null;
+                        }
+                    }
+
+                    let totalAdded = imageInputContainer.querySelectorAll('.holder > .image').length;
+                    files.forEach(function (file, index) {
+                        if (file && (totalAdded < 10)) {
+                            let imageContainer = document.createElement('div'),
+                                image = document.createElement('img'),
+                                removeButton = document.createElement('button'),
+                                imageUrl = URL.createObjectURL(file);
+
+                            removeButton.classList.add('remove'); imageContainer.classList.add('image');
+                            removeButton.innerHTML = '&times;'
+
+                            removeButton.addEventListener('click', function (e) {
+                                e.preventDefault();
+                                removeButton.parentNode.parentNode.removeChild(removeButton.parentNode);
+                                files[index] = null;
+                            });
+
+                            imageContainer.appendChild(removeButton);
+                            imageContainer.appendChild(image);
+
+                            image.addEventListener('load', function () {
+                                URL.revokeObjectURL(imageUrl);
+                                imageContainer.____arrayBuffer = new Blob([file], { "type": file.type });
+                            });
+
+                            image.addEventListener('error', function () {
+                                URL.revokeObjectURL(imageUrl);
+                                files[index] = null;
+                                totalAdded--;
+                            });
+
+                            imagesHolder.appendChild(imageContainer);
+                            image.setAttribute('src', imageUrl);
+                            totalAdded++;
+                        }
+                    })
+                },
+                isFormValid = () => {
+                    let imagesLength = form.querySelectorAll('.input.image > .holder > .image').length,
+                        errorCon = form.querySelector('.input.image > .error'),
+                        itemCon = form.querySelector('.input.image > .item');
+
+                    if (!imagesLength) {
+                        if (!errorCon) {
+                            errorCon = document.createElement('div');
+                            errorCon.classList.add('error');
+                            itemCon.parentNode.insertBefore(errorCon, itemCon);
+                        }
+
+                        errorCon.textContent = 'At least, an image is required';
+                        return false;
+                    } else {
+                        if (errorCon) {
+                            errorCon.parentNode.removeChild(errorCon);
+                        }
+                    }
+
+                    let inputs = form.querySelectorAll('.input:not([data-is-valid]), .input[data-is-valid="false"]');
+                    return !inputs.length;
+                },
+                handleSubmitButton = () => {
+                    if (isFormValid()) {
+                        submitButton.removeAttribute('disabled');
+                    } else {
+                        if (!submitButton.hasAttribute('disabled')) {
+                            submitButton.setAttribute('disabled', 'disabled');
+                        }
+                    }
+                },
+                title = form.querySelector('.input > input[name="title"]'),
+                title_timer,
+                title_change_handler = function (e) {
+                    if (title_timer) {
+                        clearTimeout(title_timer);
+                    }
+
+                    title_timer = setTimeout(() => {
+                        let value = String(this.value);
+                        if (value.length >= 10) {
+                            if (value.length > 255) {
+                                setError(this, 'Title should be below 255 characters');
+                                return;
+                            }
+
+                            removeError(this);
+                            makeValid(this);
+                            return;
+                        }
+
+                        setError(this, 'Title should be above 10 characters');
+                        return;
+                    }, 300);
+                },
+                description = form.querySelector('.input > textarea[name="description"]'),
+                description_timer,
+                description_change_handler = function (e) {
+                    if (description_timer) {
+                        clearTimeout(description_timer);
+                    }
+
+                    description_timer = setTimeout(() => {
+                        let value = String(this.value);
+                        if (value.match(/^[a-zA-Z,0-9]{1,}\s[\S\s]{2,}$/)) {
+                            removeError(this);
+                            makeValid(this);
+                            return;
+                        }
+
+                        setError(this, 'Invalid property description');
+                        return;
+                    }, 300);
+                },
+                form_timer,
+                form_change_handler = function (e) {
+                    if (form_timer) {
+                        clearTimeout(form_timer);
+                    }
+
+                    form_timer = setTimeout(() => {
+                        handleSubmitButton();
+                    }, 500);
+                },
+                type = form.querySelector('.input > select[name="type"]'),
+                transfer_type = form.querySelector('.input > select[name="transfer_type"]'),
+                rest_room = form.querySelector('.input > select[name="rest_room"]'),
+                state = form.querySelector('.input > select[name="state"]'),
+                city = form.querySelector('.input > select[name="city"]');
+
+            let selects = [
+                type,
+                transfer_type,
+                rest_room,
+                state,
+                city
+            ];
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+            });
+
+            selects.forEach(function (select) {
+                let select_timer,
+                    select_change_handler = function (e) {
+                        if (select_timer) {
+                            clearTimeout(select_timer);
+                        }
+
+                        select_timer = setTimeout(() => {
+                            let value = String(this.value);
+                            if (value.length) {
+                                removeError(this);
+                                makeValid(this);
+                                return;
+                            }
+
+                            setError(this, 'Please select a value');
+                            return;
+                        }, 300);
+                    };
+
+                events.forEach((event) => {
+                    select.addEventListener(event, select_change_handler);
+                });
+            });
+
+            events.forEach((event) => {
+                title.addEventListener(event, title_change_handler);
+                form.addEventListener(event, form_change_handler);
+            });
+
+            imageInputs.addEventListener('change', function (e) {
+                files = Array.from(this.files);
+                handleFiles();
+            });
+
+            this._hasBindedEvents = true;
+        }
+    }
+
+    init() {
+        this.bindEvents();
+    }
+}
+
 class Pages {
     constructor() {
 
@@ -1018,5 +1249,12 @@ class Pages {
             this._propertyPage = new PropertyPage();
         }
         return this._propertyPage;
+    }
+
+    get postPropertyPage() {
+        if (typeof this._postPropertyPage !== 'object') {
+            this._postPropertyPage = new PostPropertyPage();
+        }
+        return this._postPropertyPage;
     }
 }
