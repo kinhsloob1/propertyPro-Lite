@@ -7,10 +7,11 @@
     "start": "npm run prod",
     "server": "babel-node ./src/bin/index.js",
     "server:prod": "node ./dist/bin/index.js",
-    "dev": "NODE_ENV=development npm-run-all server",
+    "dev": "npm-run-all kill_dev_server server",
     "clean": "rimraf dist",
     "build": "babel ./src --out-dir dist",
-    "prod": "NODE_ENV=production npm-run-all clean build server:prod",
+    "prod": "npm-run-all clean build server:prod",
+    "kill_dev_server": "kill-port 3000",
     "watch": "nodemon"
   },
   "repository": {
@@ -54,6 +55,7 @@
     "nodemon": "^1.19.1"
   },
   "dependencies": {
+    "body-parser": "^1.19.0",
     "express": "^4.17.1",
     "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.3",
