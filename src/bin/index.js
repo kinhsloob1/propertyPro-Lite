@@ -1,22 +1,27 @@
 import express from 'express';
-import { json } from 'body-parser';
 import { resolve } from 'path';
-import process from 'process';
-import Controllers from '../controllers/index';
+import { config } from 'dotenv';
+import Storage from '../models/storage';
+import { init, catchAllErrors, processInvalidRequest } from '../middlewares/index';
+import { processLogged } from '../middlewares/auth/index';
+import mainRouter from '../routes/index';
 
-process.env.STORAGE_PREFIX = (process.env.NODE_ENV === 'test' ? 'test_' : 'main_');
-const Storage = new Map();
+config();
+const store = new Storage();
 const app = express();
-const port = 3000;
+const port = process.env.PORT;
 
-app.use(json());
+app.set('x-powered-by', false);
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(resolve(__dirname, '../public')));
-app.use((req, res, next) => {
-  req.STORAGE = Storage;
-  next();
-});
-app.use('/', Controllers);
 
+app.use(init(store));
+app.use(processLogged);
+
+app.use('/', mainRouter);
+app.use(processInvalidRequest);
+app.use(catchAllErrors);
 
 app.listen(port, () => console.log(`Example app listening on port ${port}!`));
 export default app;
