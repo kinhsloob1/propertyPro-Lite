@@ -73,9 +73,64 @@ class Users {
       },
     }).setStatusCode(200).send(res);
   }
+
+  static logUser(req, res) {
+    const { body: data } = req;
+    const userData = parseData(data, 'login');
+
+    if (!userData.isValid()) {
+      return Reply(userData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const UsersDb = Users.getDb(req);
+    const login = userData.getLogin();
+    const password = userData.getPassword();
+
+    const userId = Array.from(UsersDb.keys()).find((key) => {
+      const user = UsersDb.get(key);
+      if ((user instanceof Map)) {
+        if ((user.get('email') === login) && (user.get('password') === password)) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    const User = UsersDb.get(userId);
+    if (!(userId && (User instanceof Map))) {
+      return Reply('User does not exists').setStatusCode(404).send(res);
+    }
+
+    const userObject = Array.from(User.entries()).reduce((obj, [key, value]) => {
+      const object = obj;
+      object[key] = value;
+      return obj;
+    }, {});
+
+    const { password: pass, ...outData } = userObject;
+
+    const tokenManager = JwtManager().encode(outData);
+    if (!tokenManager.isValid()) {
+      return ReplyFor('invalid-token-assigned').send(res);
+    }
+
+    const token = tokenManager.getJwt();
+    return Reply('user logged succesfully', true, {
+      data: {
+        ...outData,
+        token,
+      },
+    })
+      .setStatusCode(200)
+      .send(res);
+  }
 }
 
 export const {
   addUser,
+  logUser,
 } = Users;
 export default Users;
