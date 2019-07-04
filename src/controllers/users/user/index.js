@@ -51,14 +51,16 @@ class User extends Map {
       }
     }
 
-    if (email === null) {
-      if (isForUser || isForRegistration) {
-        errors.push('Invalid email address');
+    if (isForRegistration || isForLogin || isForUser) {
+      if (email === null) {
+        if (isForUser || isForRegistration) {
+          errors.push('Invalid email address');
+        }
+      } else if ((!String(email).match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/))) {
+        errors.push('Invalid email address.');
+      } else {
+        this.set('email', String(email));
       }
-    } else if ((!String(email).match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/))) {
-      errors.push('Invalid email address.');
-    } else {
-      this.set('email', String(email));
     }
 
     if ((firstName === null)) {

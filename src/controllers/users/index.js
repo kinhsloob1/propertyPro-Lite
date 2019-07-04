@@ -150,6 +150,33 @@ class Users {
       .setStatusCode(200)
       .send(res);
   }
+
+  static updateUser(req, res) {
+    const { body: updateData, data } = req;
+    const userAccount = data.get('User');
+    const userData = parseData(updateData, 'updateData');
+
+    if (!userData.isValid()) {
+      return Reply(userData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const userObject = userData.getSavedData();
+    Object.entries(userObject).forEach(([key, value]) => {
+      userAccount.set(key, value);
+    });
+
+    const { password, ...outData } = userObject;
+    return Reply('User data updated succesfully', true)
+      .setStatusCode(200)
+      .setObjectData({
+        data: {
+          ...outData,
+        },
+      })
+      .send(res);
+  }
 }
 
 export const {
@@ -158,5 +185,6 @@ export const {
   logUser,
   getUser,
   getUserData,
+  updateUser,
 } = Users;
 export default Users;
