@@ -54,7 +54,8 @@ class Users {
     userData
       .set('is_verified', false)
       .set('is_admin', false)
-      .set('id', id);
+      .set('id', id)
+      .set('register_time', String(Date.now()));
 
     UsersDb.set(id, userData.getSavedMapObject());
     const { password, ...savedData } = userData.getSavedData();
@@ -127,10 +128,35 @@ class Users {
       .setStatusCode(200)
       .send(res);
   }
+
+  static getUser(req) {
+    const userDb = Users.getDb(req);
+    const userId = parseInt(req.params.id, 10) || 0;
+    return userDb.get(userId);
+  }
+
+  static getUserData(req, res) {
+    const { data } = req;
+    const userAccount = data.get('User');
+
+    const userObject = Array.from(userAccount.entries()).reduce((obj, [key, value]) => {
+      const object = obj;
+      object[key] = value;
+      return obj;
+    }, {});
+
+    const { password, ...userData } = userObject;
+    return Reply('User fetched succesfully', true, userData)
+      .setStatusCode(200)
+      .send(res);
+  }
 }
 
 export const {
+  getDb: UsersDb,
   addUser,
   logUser,
+  getUser,
+  getUserData,
 } = Users;
 export default Users;
