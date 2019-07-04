@@ -16,7 +16,7 @@ class UserMiddleware {
       const isSameTimestamp = (registerTime === user.get('register_time'));
 
       if ((!isValidId) || (isValidId && (!isSameTimestamp))) {
-        return Reply('Invalid user... User has been deleted from storage')
+        return Reply('Ooops... Either your account has been removed or your token is invalid. Try authenticating again and if the problem persists, Do well to contact an administrator')
           .setStatusCode(410)
           .send(res);
       }

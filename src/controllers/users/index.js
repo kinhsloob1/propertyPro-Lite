@@ -177,6 +177,17 @@ class Users {
       })
       .send(res);
   }
+
+  static deleteUser(req, res) {
+    const { data } = req;
+    const userAccount = data.get('User');
+    const usersDb = Users.getDb(req);
+
+    usersDb.delete(userAccount.get('id'));
+    return Reply('User removed succesfully succesfully')
+      .setStatusCode(204)
+      .send(res);
+  }
 }
 
 export const {
@@ -186,5 +197,6 @@ export const {
   getUser,
   getUserData,
   updateUser,
+  deleteUser,
 } = Users;
 export default Users;
