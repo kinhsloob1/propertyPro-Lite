@@ -178,6 +178,17 @@ class Properties {
     return reply.send(res);
   }
 
+  static deleteProperty(req, res) {
+    const { data } = req;
+    const property = data.get('Property');
+    const propertiesDb = Properties.getDb(req);
+
+    propertiesDb.delete(property.get('id'));
+    return Reply('Property removed succesfully succesfully')
+      .setStatusCode(204)
+      .send(res);
+  }
+
   static setPropertySold(req, res) {
     const { data } = req;
     const property = data.get('Property');
@@ -204,6 +215,7 @@ export const {
   getProperty,
   updateProperty,
   deleteProperty,
+  getPropertyById,
   setPropertySold,
 } = Properties;
 export default Properties;
