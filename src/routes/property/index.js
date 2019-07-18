@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { enforceLogged } from '../../middlewares/auth/index';
 import { ensureUserHasPermission, processProperty } from '../../middlewares/property/index';
 import {
+  getPropertyData,
   addProperty,
   updateProperty,
   deleteProperty,
@@ -14,6 +15,7 @@ const router = Router({
 
 router.post('/', enforceLogged, addProperty);
 router.route('/:id')
+  .get([processProperty], getPropertyData)
   .patch([processProperty, enforceLogged, ensureUserHasPermission], updateProperty)
   .delete([processProperty, enforceLogged, ensureUserHasPermission], deleteProperty);
 
