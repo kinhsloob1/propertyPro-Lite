@@ -216,6 +216,7 @@ export const {
   getPropertyData,
   updateProperty,
   deleteProperty,
+  getProperties,
   getPropertyById,
   setPropertySold,
 } = Properties;
