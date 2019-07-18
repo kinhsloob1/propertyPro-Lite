@@ -192,6 +192,50 @@ class Properties {
       .send(res);
   }
 
+  static getProperties(req, res) {
+    const {
+      query: {
+        propertyType: propType = null,
+        limit = 12,
+        offset = 0,
+      },
+    } = req;
+
+    const propertiesDb = Properties.getDb(req);
+    const out = [];
+    let offsetCount = 0;
+
+    let propertyType = (typeof propType === 'string' ? propType : 'all');
+    propertyType = propertyType.toLowerCase();
+
+    Array.from(propertiesDb.keys()).forEach((key) => {
+      const property = propertiesDb.get(key);
+      if (property.get('is_blocked')) {
+        return;
+      }
+
+      if ((propertyType !== 'all') && (property.get('type') !== propertyType)) {
+        return;
+      }
+
+      const propertyObject = Properties.getPropertyObject(property);
+      if (propertyObject.isOk()) {
+        if (offsetCount < offset) {
+          offsetCount += 1;
+        } else if (out.length < limit) {
+          out.push(propertyObject.get('Object'));
+        }
+      }
+    });
+
+    const reply = Reply('Properties list', true);
+    reply.setStatusCode(200);
+    reply.setObjectData({
+      data: out,
+    });
+    return reply.send(res);
+  }
+
   static setPropertySold(req, res) {
     const { data } = req;
     const property = data.get('Property');
@@ -339,6 +383,45 @@ class Properties {
       .setStatusCode(204)
       .send(res);
   }
+
+  static getPropertyFlags(req, res) {
+    const { data } = req;
+    let {
+      query: {
+        limit = 12,
+        offset = 0,
+      },
+    } = req;
+
+    limit = parseInt(limit, 10);
+    offset = parseInt(offset, 10);
+
+    const property = data.get('Property');
+    const out = [];
+    let offsetCount = 0;
+    let propertyFlags = property.get('flags');
+
+    if (Array.isArray(propertyFlags)) {
+      propertyFlags = propertyFlags.reverse();
+      propertyFlags.forEach((propertyFlag) => {
+        const propertyFlagObject = this.getPropertyFlagObject(propertyFlag);
+        if (propertyFlagObject.isOk()) {
+          if (offsetCount < offset) {
+            offsetCount += 1;
+          } else if (out.length < limit) {
+            out.push(propertyFlagObject.get('Object'));
+          }
+        }
+      });
+    }
+
+    const reply = Reply('Property flags list', true);
+    reply.setStatusCode(200);
+    reply.setObjectData({
+      data: out,
+    });
+    return reply.send(res);
+  }
 }
 
 export const {
@@ -355,5 +438,6 @@ export const {
   flagProperty,
   updatePropertyFlag,
   deletePropertyFlag,
+  getPropertyFlags,
 } = Properties;
 export default Properties;
