@@ -85,18 +85,18 @@ class Reply extends Map {
 
   send(res) {
     const headers = this.getHeaders();
-    headers.forEach(header => res.set(header));
+    headers.forEach(header => res.set(...header));
     return res.status(this.getStatusCode()).json(this.getResponseObject());
   }
 
   addHeader(...data) {
     let headers = [];
-    if (!this.has('_headers')) {
-      headers = [];
+    if (this.has('_headers')) {
+      headers = this.get('_headers');
     }
 
     headers.push(data);
-    return this;
+    return this.set('_headers', headers);
   }
 
   getHeaders() {

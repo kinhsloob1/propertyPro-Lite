@@ -2,6 +2,7 @@ class Storage extends Map {
   constructor() {
     super();
     this.STORAGE_PREFIX = process.env.NODE_ENV === 'test' ? 'test_' : 'main_';
+    this.loadStatesData();
   }
 
   getStoragePrefix() {
@@ -41,6 +42,52 @@ class Storage extends Map {
       return this.set(storage, new Map());
     }
     return null;
+  }
+
+  loadStatesData() {
+    const statesDb = this.createStorage('states').getStorage('states');
+    const states = {
+      lagos: {
+        cities: [
+          'lekki',
+          'ajah',
+          'victoria island',
+          'surulere',
+          'oshodi',
+          'jibowu',
+        ],
+      },
+      rivers: {
+        cities: [
+          'port harcourt',
+          'etche',
+          'ahoda',
+          'elele',
+          'town',
+        ],
+      },
+      imo: {
+        cities: [
+          'owerri',
+          'mbaise',
+          'obowow',
+          'okigwe',
+          'umuagwo',
+        ],
+      },
+    };
+
+    Object.keys(states).forEach((stateName) => {
+      statesDb.set(stateName, new Map());
+      const stateData = states[stateName];
+      const store = statesDb.get(stateName);
+
+      Object.keys(stateData).forEach((dataKey) => {
+        store.set(dataKey, stateData[dataKey]);
+      });
+    });
+
+    return this;
   }
 }
 

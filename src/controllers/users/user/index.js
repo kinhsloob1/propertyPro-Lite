@@ -33,111 +33,131 @@ class User extends Map {
     const isForLogin = (purpose === 'login');
     const errors = [];
 
+    let value = String(id);
+    let valueLength = 0;
+
     if (isForUser) {
-      if ((id === null) || ((!String(id).match(/^\d{1,}$/)) && (parseInt(id, 10) > 0))) {
+      if ((id === null) || (!((value.match(/^\d{1,}$/)) && (parseInt(id, 10) > 0)))) {
         errors.push('user id is required');
       } else {
         this.set('id', parseInt(id, 10));
       }
     }
 
+    value = String(login);
     if (isForLogin) {
       if (login === null) {
         errors.push('Invalid login is required Please insert your email address');
-      } else if (!String(login).match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/)) {
+      } else if (!value.match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/)) {
         errors.push('Invalid login specified... Please insert your registered email address');
       } else {
-        this.set('login', String(login));
+        this.set('login', value);
       }
     }
 
+    value = String(email);
     if (isForRegistration || isForLogin || isForUser) {
       if (email === null) {
         if (isForUser || isForRegistration) {
           errors.push('Invalid email address');
         }
-      } else if ((!String(email).match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/))) {
+      } else if ((!value.match(/^\S{1,255}@\S{2,30}\.\S{2,20}$/))) {
         errors.push('Invalid email address.');
       } else {
-        this.set('email', String(email));
+        this.set('email', value);
       }
     }
 
+    value = String(firstName);
+    valueLength = value.length;
     if ((firstName === null)) {
       if (isForUser || isForRegistration) {
         errors.push('Invalid first name');
       }
-    } else if (!(String(firstName).length >= 3) && (String(firstName).length <= 255)) {
+    } else if (!((valueLength >= 3) && (valueLength <= 255))) {
       errors.push('First name should be above 3 charcters and below 255 characters.');
+    } else if (!value.match(/^\S{1,}$/)) {
+      errors.push('Invalid characters as first name');
     } else {
-      this.set('first_name', String(firstName).toLowerCase());
+      this.set('first_name', value.toLowerCase());
     }
 
+    value = String(lastName);
+    valueLength = value.length;
     if ((lastName === null)) {
       if (isForUser || isForRegistration) {
         errors.push('Invalid last name');
       }
-    } else if (!(String(lastName).length >= 3) && (String(lastName).length <= 255)) {
+    } else if (!((valueLength >= 3) && (valueLength <= 255))) {
       errors.push('Last name should be above 3 charcters and below 255 characters.');
+    } else if (!value.match(/^\S{1,}$/)) {
+      errors.push('Invalid characters as last name');
     } else {
-      this.set('last_name', String(lastName).toLowerCase());
+      this.set('last_name', value.toLowerCase());
     }
 
+    value = String(password);
+    valueLength = value.length;
     if (isForUpdate || isForRegistration || isForLogin || isForUser) {
       if (password === null) {
         if (isForRegistration || isForLogin || isForUser) {
           errors.push('Invalid password... please insert your password');
         }
-      } else if (!(String(password).length >= 3) && (String(password).length <= 255)) {
+      } else if (!((valueLength >= 3) && (valueLength <= 255))) {
         errors.push('Password should be above 3 charcters and below 255 characters.');
       } else {
-        this.set('password', createHash('sha512').update(String(password)).digest('hex'));
+        this.set('password', createHash('sha512').update(value).digest('hex'));
       }
 
+      value = String(passwordConfirmation);
       if (passwordConfirmation === null) {
         if (isForRegistration) {
           errors.push('Password confirmation is required');
         }
-      } else if (!(this.getPassword() === createHash('sha512').update(passwordConfirmation).digest('hex'))) {
+      } else if (!(this.getPassword() === createHash('sha512').update(value).digest('hex'))) {
         errors.push('Passwords does not match');
       }
     }
 
+    value = String(phoneNumber);
     if ((phoneNumber === null)) {
       if (isForUser || isForRegistration) {
         errors.push('Invalid phone number');
       }
-    } else if (!String(phoneNumber).match(/^\d{11,15}$/)) {
-      errors.push('Phone number must be 11 digits or at most 15 digits');
+    } else if (!value.match(/^\d{11,15}$/)) {
+      errors.push('Phone number must be 11 digits or at most 15 digits only');
     } else {
-      this.set('phoneNumber', String(phoneNumber));
+      this.set('phoneNumber', value);
     }
 
+    value = String(address);
     if ((address === null)) {
       if (isForUser || isForRegistration) {
         errors.push('Invalid address');
       }
-    } else if (!String(address).match(/^[\S]{1,}[\d\s\S]{5,255}$/)) {
-      errors.push('Invalid address.. space should be between address data');
+    } else if (!value.match(/^[\S]{1,}[\d\s\S]{5,255}$/)) {
+      errors.push('Invalid address.. please insert a valid address');
     } else {
-      this.set('address', String(address).toLowerCase());
+      this.set('address', value.toLowerCase());
     }
 
+    value = Boolean(isAdmin);
     if (isForUser) {
       if (isAdmin === null) {
         errors.push('user admin status is required');
-      } else if (![true, false].includes(Boolean(isAdmin))) {
+      } else if (![true, false].includes(value)) {
         errors.push('Invalid user admin status');
       } else {
-        this.set('is_admin', Boolean(isAdmin));
+        this.set('is_admin', value);
       }
 
+      value = Boolean(isVerified);
       if (isVerified === null) {
         errors.push('user verification status is required');
-      } else if (![true, false].includes(Boolean(isVerified))) {
+      } else if (![true, false].includes(value)) {
         errors.push('Invalid user verification status');
       } else {
-        this.set('is_verified', Boolean(isVerified));
+        this.set('is_verified', value);
       }
     }
 

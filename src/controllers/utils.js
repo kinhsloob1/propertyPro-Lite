@@ -41,6 +41,11 @@ class Utils {
           .reply('Ooops you dont have appropriate permission.')
           .setStatusCode(403);
 
+      case 'invalid-property':
+        return Utils
+          .reply('Ooops property does not exists')
+          .setStatusCode(404);
+
       default:
         return Utils
           .reply('An error occured')
