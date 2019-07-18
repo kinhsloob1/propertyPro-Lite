@@ -1,5 +1,5 @@
 import * as Cloud from 'cloudinary';
-import { Reply } from '../utils';
+import { Reply, ReplyFor } from '../utils';
 import { parseData } from './property/index';
 
 const {
@@ -90,6 +90,25 @@ class Properties {
     return propertyDb.get(propertyId);
   }
 
+  static getPropertyData(req, res) {
+    const { data } = req;
+    const property = data.get('Property');
+
+    let propertyObject = Properties.getPropertyObject(property);
+    if (!propertyObject.isOk()) {
+      return ReplyFor('invalid-property').send(res);
+    }
+
+    propertyObject = propertyObject.get('Object');
+    const reply = Reply('Property fetched succesfully', true, {
+      data: {
+        ...propertyObject,
+      },
+    });
+    reply.setStatusCode(200);
+    return reply.send(res);
+  }
+
   static getPropertyById(id) {
     return (req) => {
       const Property = Properties.getDb(req).get(id);
@@ -158,6 +177,25 @@ class Properties {
     });
     return reply.send(res);
   }
+
+  static setPropertySold(req, res) {
+    const { data } = req;
+    const property = data.get('Property');
+
+    property.set('status', 'sold');
+    let propertyObject = Properties.getPropertyObject(property);
+    if (!propertyObject.isOk()) {
+      return ReplyFor('invalid-property').send(res);
+    }
+
+    propertyObject = propertyObject.get('Object');
+    return Reply('Property information updated succesfully')
+      .setStatusCode(200)
+      .setObjectData({
+        data: propertyObject,
+      })
+      .send(res);
+  }
 }
 
 export const {
@@ -165,5 +203,7 @@ export const {
   addProperty,
   getProperty,
   updateProperty,
+  deleteProperty,
+  setPropertySold,
 } = Properties;
 export default Properties;
