@@ -83,10 +83,87 @@ class Properties {
     reply.addHeader('Location', `/v1/property/${id}`);
     return reply.send(res);
   }
+
+  static getProperty(req) {
+    const propertyDb = Properties.getDb(req);
+    const propertyId = parseInt(req.params.id, 10) || 0;
+    return propertyDb.get(propertyId);
+  }
+
+  static getPropertyById(id) {
+    return (req) => {
+      const Property = Properties.getDb(req).get(id);
+      if (!(Property instanceof Map)) {
+        return Reply('Invalid property', false);
+      }
+
+      return Reply('valid property', true, {
+        Property,
+      });
+    };
+  }
+
+  static getPropertyObject(property) {
+    if (!(property instanceof Map)) {
+      return Reply('Invalid property', false);
+    }
+
+    const propertyObject = Array.from(property.keys()).reduce((obj, key) => {
+      const object = obj;
+
+      switch (key) {
+        case 'ownerMap': {
+          const owner = property.get(key);
+          object.ownerEmail = owner.get('email');
+          object.ownerPhoneNumber = owner.get('phoneNumber');
+        }
+          break;
+
+        default:
+          object[key] = property.get(key);
+      }
+
+      return obj;
+    }, {});
+
+    const { owner, ...propertyData } = propertyObject;
+
+    return Reply('Property data', true, {
+      Object: propertyData,
+    });
+  }
+
+  static updateProperty(req, res) {
+    const { body: updateData, data } = req;
+    const property = data.get('Property');
+    const propertyData = parseData(updateData, 'update');
+
+    if (!propertyData.isValid()) {
+      return Reply(propertyData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const propertyObject = propertyData.getSavedData();
+    Object.entries(propertyObject).forEach(([key, value]) => {
+      property.set(key, value);
+    });
+
+    const reply = Reply('Property data updated succesfully', true);
+    reply.setStatusCode(200);
+    reply.setObjectData({
+      data: {
+        ...propertyObject,
+      },
+    });
+    return reply.send(res);
+  }
 }
 
 export const {
   getDb: PropertiesDb,
   addProperty,
+  getProperty,
+  updateProperty,
 } = Properties;
 export default Properties;
