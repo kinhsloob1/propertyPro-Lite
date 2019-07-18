@@ -22,6 +22,7 @@ class Property extends Map {
       option = null,
       images = [],
       location = null,
+      created_on: createdOn = null,
     },
   ) {
     const purpose = this.get('_purpose');
@@ -43,7 +44,7 @@ class Property extends Map {
         errors.push('Invalid property description');
       }
     } else if (!((String(description).length >= 3) && (String(description).length <= 255))) {
-      errors.push('First name should be above 3 charcters and below 255 characters.');
+      errors.push('description should be above 3 charcters and below 255 characters.');
     } else {
       this.set('description', String(description).toLowerCase());
     }
@@ -177,6 +178,16 @@ class Property extends Map {
       }
     }
 
+    if (isForProperty) {
+      if ((createdOn === null)) {
+        errors.push('Invalid property created date');
+      } else if (!Date.parse(createdOn)) {
+        errors.push('Ooops... invalid property created date');
+      } else {
+        this.set('created_on', new Date(createdOn));
+      }
+    }
+
     if (errors.length > 0) {
       this.set('_isValid', false);
       this.set('_errors', errors);
@@ -205,7 +216,7 @@ class Property extends Map {
     if ((errors !== null) && Array.isArray(errors)) {
       return errors.shift();
     }
-    return this.get('is_admin');
+    return null;
   }
 
   getSavedData() {

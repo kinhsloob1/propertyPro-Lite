@@ -46,6 +46,11 @@ class Utils {
           .reply('Ooops property does not exists')
           .setStatusCode(404);
 
+      case 'invalid-property-flag':
+        return Utils
+          .reply('Ooops property flag does not exists')
+          .setStatusCode(404);
+
       default:
         return Utils
           .reply('An error occured')

@@ -24,6 +24,7 @@ class User extends Map {
       address = null,
       is_admin: isAdmin = null,
       is_verified: isVerified = null,
+      created_on: createdOn = null,
     },
   ) {
     const purpose = this.get('_purpose');
@@ -159,6 +160,14 @@ class User extends Map {
       } else {
         this.set('is_verified', value);
       }
+
+      if ((createdOn === null)) {
+        errors.push('Invalid user created date');
+      } else if (!Date.parse(createdOn)) {
+        errors.push('Ooops... invalid user created date');
+      } else {
+        this.set('created_on', new Date(createdOn));
+      }
     }
 
     if (errors.length > 0) {
@@ -229,7 +238,7 @@ class User extends Map {
     if ((errors !== null) && Array.isArray(errors)) {
       return errors.shift();
     }
-    return this.get('is_admin');
+    return null;
   }
 
   getSavedData() {
