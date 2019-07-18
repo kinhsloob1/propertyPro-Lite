@@ -1,6 +1,7 @@
 import * as Cloud from 'cloudinary';
 import { Reply, ReplyFor } from '../utils';
 import { parseData } from './property/index';
+import * as flagSpecData from './property/flag/index';
 
 const {
   v2: {
@@ -10,6 +11,7 @@ const {
   },
 } = Cloud;
 
+const { parseData: parseFlagData } = flagSpecData;
 class Properties {
   static getDb(req) {
     const { data } = req;
@@ -86,7 +88,7 @@ class Properties {
 
   static getProperty(req) {
     const propertyDb = Properties.getDb(req);
-    const propertyId = parseInt(req.params.id, 10) || 0;
+    const propertyId = parseInt(req.params.propertyId, 10) || 0;
     return propertyDb.get(propertyId);
   }
 
@@ -207,6 +209,98 @@ class Properties {
       })
       .send(res);
   }
+
+  static getFlagsDb(req) {
+    const { data } = req;
+    const db = data.get('database');
+    if (!db.hasStorage('flags')) {
+      db.createStorage('flags');
+    }
+
+    return db.getStorage('flags');
+  }
+
+  static getPropertyFlag(req) {
+    const propertyFlagDb = this.getFlagsDb(req);
+    const propertyFlagId = parseInt(req.params.propertyFlagId, 10) || 0;
+    return propertyFlagDb.get(propertyFlagId);
+  }
+
+  static flagProperty(req, res) {
+    const { data, body: flagClientData } = req;
+    const flagData = parseFlagData(flagClientData, 'new');
+
+    if (!flagData.isValid()) {
+      return Reply(flagData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const property = data.get('Property');
+    const flagsDb = this.getFlagsDb(req);
+
+    const id = (
+      (flagsDb.size > 0)
+        ? (parseInt(Array.from(flagsDb.keys()).pop(), 10) + 1)
+        : 1
+    );
+    const owner = data.get('loggedUser');
+
+    flagData
+      .set('id', id)
+      .set('owner', owner.get('id'))
+      .set('property_id', property.get('id'))
+      .set('created_on', new Date());
+
+    const flagMapData = flagData
+      .getSavedMapObject()
+      .set('ownerMap', owner);
+
+    flagsDb.set(id, flagMapData);
+
+    const flags = property.get('flags') || [];
+    flags.push(flagMapData);
+
+    const savedData = flagData.getSavedData();
+    const reply = Reply('Property flagged succesfully', true);
+    reply.setObjectData({
+      data: {
+        ...savedData,
+      },
+    });
+    reply.setStatusCode(200);
+    return reply.send(res);
+  }
+
+  static getPropertyFlagObject(propertyFlag) {
+    if (!(propertyFlag instanceof Map)) {
+      return Reply('Invalid property flag', false);
+    }
+
+    const propertyFlagObject = Array.from(propertyFlag.keys()).reduce((obj, key) => {
+      const object = obj;
+
+      switch (key) {
+        case 'ownerMap': {
+          const owner = propertyFlag.get(key);
+          object.ownerEmail = owner.get('email');
+          object.ownerPhoneNumber = owner.get('phoneNumber');
+        }
+          break;
+
+        default:
+          object[key] = propertyFlag.get(key);
+      }
+
+      return object;
+    }, {});
+
+    const { owner, ...propertyFlagData } = propertyFlagObject;
+
+    return Reply('Property flag data', true, {
+      Object: propertyFlagData,
+    });
+  }
 }
 
 export const {
@@ -219,5 +313,7 @@ export const {
   getProperties,
   getPropertyById,
   setPropertySold,
+  getPropertyFlag,
+  flagProperty,
 } = Properties;
 export default Properties;
