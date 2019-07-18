@@ -213,6 +213,7 @@ export const {
   getDb: PropertiesDb,
   addProperty,
   getProperty,
+  getPropertyData,
   updateProperty,
   deleteProperty,
   getPropertyById,
