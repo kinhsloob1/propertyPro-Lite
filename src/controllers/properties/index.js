@@ -328,6 +328,17 @@ class Properties {
     });
     return reply.send(res);
   }
+
+  static deletePropertyFlag(req, res) {
+    const { data } = req;
+    const propertyFlag = data.get('PropertyFlag');
+    const propertyFlagsDb = this.getFlagsDb(req);
+
+    propertyFlagsDb.delete(propertyFlag.get('id'));
+    return Reply('Property flag removed succesfully')
+      .setStatusCode(204)
+      .send(res);
+  }
 }
 
 export const {
@@ -343,5 +354,6 @@ export const {
   getPropertyFlag,
   flagProperty,
   updatePropertyFlag,
+  deletePropertyFlag,
 } = Properties;
 export default Properties;
