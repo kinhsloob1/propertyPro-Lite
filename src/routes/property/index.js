@@ -4,6 +4,7 @@ import { ensureUserHasPermission, processProperty } from '../../middlewares/prop
 import {
   addProperty,
   updateProperty,
+  deleteProperty,
 } from '../../controllers/properties/index';
 import soldRouter from './sold/index';
 
@@ -13,7 +14,8 @@ const router = Router({
 
 router.post('/', enforceLogged, addProperty);
 router.route('/:id')
-  .patch([processProperty, enforceLogged, ensureUserHasPermission], updateProperty);
+  .patch([processProperty, enforceLogged, ensureUserHasPermission], updateProperty)
+  .delete([processProperty, enforceLogged, ensureUserHasPermission], deleteProperty);
 
 router.use('/:id/sold', soldRouter);
 export default router;
