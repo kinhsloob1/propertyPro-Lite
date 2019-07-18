@@ -11,7 +11,8 @@ const {
   },
 } = Cloud;
 
-const { parseData: parseFlagData } = flagSpecData;
+const { parseData: parsePropertyFlagData } = flagSpecData;
+
 class Properties {
   static getDb(req) {
     const { data } = req;
@@ -228,7 +229,7 @@ class Properties {
 
   static flagProperty(req, res) {
     const { data, body: flagClientData } = req;
-    const flagData = parseFlagData(flagClientData, 'new');
+    const flagData = parsePropertyFlagData(flagClientData, 'new');
 
     if (!flagData.isValid()) {
       return Reply(flagData.getError())
@@ -301,6 +302,32 @@ class Properties {
       Object: propertyFlagData,
     });
   }
+
+  static updatePropertyFlag(req, res) {
+    const { body: updateData, data } = req;
+    const propertyFlag = data.get('PropertyFlag');
+    const propertyFlagData = parsePropertyFlagData(updateData, 'update');
+
+    if (!propertyFlagData.isValid()) {
+      return Reply(propertyFlagData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const propertyFlagObject = propertyFlagData.getSavedData();
+    Object.entries(propertyFlagObject).forEach(([key, value]) => {
+      propertyFlag.set(key, value);
+    });
+
+    const reply = Reply('Property flag data updated succesfully', true);
+    reply.setStatusCode(200);
+    reply.setObjectData({
+      data: {
+        ...propertyFlagObject,
+      },
+    });
+    return reply.send(res);
+  }
 }
 
 export const {
@@ -315,5 +342,6 @@ export const {
   setPropertySold,
   getPropertyFlag,
   flagProperty,
+  updatePropertyFlag,
 } = Properties;
 export default Properties;
