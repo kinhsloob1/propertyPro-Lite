@@ -11,6 +11,7 @@ class generalMiddleware {
       req.data
         .set('envs', new Map(Object.entries(process.env)))
         .set('database', database);
+
       return next();
     };
   }

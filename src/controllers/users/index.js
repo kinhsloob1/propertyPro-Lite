@@ -38,29 +38,22 @@ class Users {
         .send(res);
     }
 
-    const hasPhoneNumber = users.find(
-      ([, user]) => (
-        user.get('phoneNumber') === userData.getPhoneNumber()
-      ),
-    );
-
-    if (hasPhoneNumber) {
-      return Reply('Phone Number already registered... If you are the owner please try logging in')
-        .setStatusCode(400)
-        .send(res);
-    }
-
-    const id = (UsersDb.size + 1);
+    const id = ((UsersDb.size > 0) ? (parseInt(Array.from(UsersDb.keys()).pop(), 10) + 1) : 1);
     userData
       .set('is_verified', false)
+      .set('is_blocked', false)
       .set('is_admin', false)
       .set('id', id)
-      .set('register_time', String(Date.now()));
+      .set('created_on', new Date());
 
     UsersDb.set(id, userData.getSavedMapObject());
     const { password, ...savedData } = userData.getSavedData();
 
-    const tokenManager = JwtManager().encode(savedData);
+    const tokenManager = JwtManager().encode({
+      id: userData.get('id'),
+      created_on: userData.get('created_on'),
+    });
+
     if (!tokenManager.isValid()) {
       UsersDb.delete(id);
       return ReplyFor('invalid-token-assigned').send(res);
@@ -113,7 +106,11 @@ class Users {
 
     const { password: pass, ...outData } = userObject;
 
-    const tokenManager = JwtManager().encode(outData);
+    const tokenManager = JwtManager().encode({
+      id: User.get('id'),
+      created_on: User.get('created_on'),
+    });
+
     if (!tokenManager.isValid()) {
       return ReplyFor('invalid-token-assigned').send(res);
     }
@@ -138,17 +135,21 @@ class Users {
   static getUserData(req, res) {
     const { data } = req;
     const userAccount = data.get('User');
+    let userObject = Users.getUserObject(userAccount);
 
-    const userObject = Array.from(userAccount.entries()).reduce((obj, [key, value]) => {
-      const object = obj;
-      object[key] = value;
-      return obj;
-    }, {});
+    if (!userObject.isOk()) {
+      return Reply('Invalid user').send(res);
+    }
 
-    const { password, ...userData } = userObject;
-    return Reply('User fetched succesfully', true, userData)
-      .setStatusCode(200)
-      .send(res);
+    userObject = userObject.get('Object');
+    const reply = Reply('User fetched succesfully', true)
+      .setStatusCode(200);
+
+    reply.setObjectData({
+      data: userObject,
+    });
+
+    return reply.send(res);
   }
 
   static updateUser(req, res) {
@@ -163,9 +164,17 @@ class Users {
     }
 
     const userObject = userData.getSavedData();
+    let updatedDataCount = 0;
     Object.entries(userObject).forEach(([key, value]) => {
       userAccount.set(key, value);
+      updatedDataCount += 1;
     });
+
+    if (updatedDataCount === 0) {
+      return Reply('Ooops... no data to update', false)
+        .setStatusCode(400)
+        .send(res);
+    }
 
     const { password, ...outData } = userObject;
     return Reply('User data updated succesfully', true)
@@ -188,6 +197,74 @@ class Users {
       .setStatusCode(204)
       .send(res);
   }
+
+  static getUserById(id) {
+    return (req) => {
+      const UsersDb = Users.getDb(req);
+      const User = UsersDb.get(id);
+
+      if (User instanceof Map) {
+        return Reply('User found', true, {
+          data: User,
+        });
+      }
+
+      return Reply('User not found');
+    };
+  }
+
+  static getUserObject(user) {
+    if (!(user instanceof Map)) {
+      return Reply('Invalid user');
+    }
+
+    const userObject = Array.from(user.entries()).reduce((obj, [key, value]) => {
+      const object = obj;
+      object[key] = value;
+      return obj;
+    }, {});
+
+    const { password, ...userData } = userObject;
+    return Reply('User', true, {
+      Object: userData,
+    });
+  }
+
+  static getUsers(req, res) {
+    const {
+      query: {
+        limit = 12,
+        offset = 0,
+      },
+    } = req;
+
+    const UsersDb = Users.getDb(req);
+    const out = [];
+    let offsetCount = 0;
+
+    Array.from(UsersDb.keys()).forEach((key) => {
+      const user = UsersDb.get(key);
+      if (user.get('is_blocked')) {
+        return;
+      }
+
+      const userObject = Users.getUserObject(user);
+      if (userObject.isOk()) {
+        if (offsetCount < offset) {
+          offsetCount += 1;
+        } else if (out.length < limit) {
+          out.push(userObject.get('Object'));
+        }
+      }
+    });
+
+    const reply = Reply('Users list', true);
+    reply.setStatusCode(200);
+    reply.setObjectData({
+      data: out,
+    });
+    return reply.send(res);
+  }
 }
 
 export const {
@@ -198,5 +275,8 @@ export const {
   getUserData,
   updateUser,
   deleteUser,
+  getUserById,
+  getUserObject,
+  getUsers,
 } = Users;
 export default Users;
