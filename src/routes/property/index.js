@@ -9,6 +9,7 @@ import {
 } from '../../controllers/properties/index';
 import soldRouter from './sold/index';
 import flagRouter from './flag/index';
+import flagsRouter from './flags/index';
 
 const router = Router({
   mergeParams: true,
@@ -22,4 +23,5 @@ router.route('/:propertyId')
 
 router.use('/:propertyId/sold', soldRouter);
 router.use('/:propertyId/flag', flagRouter);
+router.use('/:propertyId/flags', flagsRouter);
 export default router;
