@@ -106,7 +106,7 @@ class Property extends Map {
         errors.push('Invalid property address');
       }
     } else if (!(String(address).match(/^[\S]{1,}[\d\s\S]{5,}$/)) && (String(address).length <= 255)) {
-      errors.push('Invalid address.. address should be less than 255 characters');
+      errors.push('Invalid address.. address should be above 6 characters and less than 255 characters');
     } else {
       this.set('address', String(address).toLowerCase());
     }

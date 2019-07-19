@@ -20,6 +20,8 @@ class User extends Map {
       last_name: lastName = null,
       password = null,
       password_confirmation: passwordConfirmation = null,
+      new_password: newPassword = null,
+      can_remember: canRemember = null,
       phoneNumber = null,
       address = null,
       is_admin: isAdmin = null,
@@ -32,6 +34,7 @@ class User extends Map {
     const isForUpdate = (purpose === 'updateData');
     const isForRegistration = (purpose === 'registration');
     const isForLogin = (purpose === 'login');
+    const isForReset = (purpose === 'reset');
     const errors = [];
 
     let value = String(id);
@@ -97,11 +100,20 @@ class User extends Map {
       this.set('last_name', value.toLowerCase());
     }
 
+    value = Boolean(canRemember);
+    if (isForReset) {
+      if (canRemember === null) {
+        errors.push('Please select the option asking if you remember your password');
+      } else {
+        this.set('can_remember', value);
+      }
+    }
+
     value = String(password);
     valueLength = value.length;
-    if (isForUpdate || isForRegistration || isForLogin || isForUser) {
+    if (isForUpdate || isForRegistration || isForLogin || isForUser || isForReset) {
       if (password === null) {
-        if (isForRegistration || isForLogin || isForUser) {
+        if (isForRegistration || isForLogin || isForUser || (isForReset && canRemember)) {
           errors.push('Invalid password... please insert your password');
         }
       } else if (!((valueLength >= 3) && (valueLength <= 255))) {
@@ -117,6 +129,27 @@ class User extends Map {
         }
       } else if (!(this.getPassword() === createHash('sha512').update(value).digest('hex'))) {
         errors.push('Passwords does not match');
+      }
+
+      if (isForReset && canRemember) {
+        value = String(newPassword);
+        valueLength = value.length;
+        const newPasswordDigest = createHash('sha512').update(value).digest('hex');
+        if (newPassword === null) {
+          errors.push('new password is required');
+        } else if (!((valueLength >= 3) && (valueLength <= 255))) {
+          errors.push('new password should be above 3 charcters and below 255 characters');
+        } else if (!this.getPassword()) {
+          errors.push('current account password is required');
+        } else if (this.getPassword() === newPasswordDigest) {
+          errors.push('new password must be different from previous password');
+        } else if (passwordConfirmation === null) {
+          errors.push('new password confirmation is required');
+        } else if ((createHash('sha512').update(passwordConfirmation).digest('hex') !== newPasswordDigest)) {
+          errors.push('Password confirmayion does not match new password');
+        } else {
+          this.set('new_password', newPasswordDigest);
+        }
       }
     }
 

@@ -10,6 +10,11 @@ class Utils {
 
   static replyFor(type) {
     switch (type) {
+      case 'server-error':
+        return Utils
+          .reply('An error occured with th server... Please try again later')
+          .setStatusCode(500);
+
       case 'invalid-request':
         return Utils
           .reply('Invalid request')

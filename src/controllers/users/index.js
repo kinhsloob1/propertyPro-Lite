@@ -1,3 +1,4 @@
+import { randomBytes } from 'crypto';
 import { Reply, ReplyFor } from '../utils';
 import { JwtManager } from '../token';
 import { parseData } from './user/index';
@@ -265,6 +266,94 @@ class Users {
     });
     return reply.send(res);
   }
+
+  static resetUserPassword(req, res) {
+    const {
+      params: {
+        userEmail,
+      },
+      data,
+      body: clientResetData,
+    } = req;
+
+    const resetData = parseData(clientResetData, 'reset');
+    if (!resetData.isValid()) {
+      return Reply(resetData.getError())
+        .setStatusCode(400)
+        .send(res);
+    }
+
+    const UsersDb = Users.getDb(req);
+    const userId = Array.from(UsersDb.keys()).find((key) => {
+      const user = UsersDb.get(key);
+      if ((user instanceof Map)) {
+        if (user.get('email') === userEmail) {
+          return true;
+        }
+      }
+
+      return false;
+    });
+
+    const User = UsersDb.get(userId);
+    if (!(userId && (User instanceof Map))) {
+      return Reply('email address is not registered')
+        .setStatusCode(404)
+        .send(res);
+    }
+
+    const canRemember = resetData.get('can_remember');
+    const newPassword = resetData.get('new_password');
+
+    if (canRemember) {
+      User.set('password', newPassword);
+      return res.status(200).json({
+        status: 204,
+      });
+    }
+
+    const passwordString = randomBytes(10).toString('hex').substr(0, 10);
+    const passwordData = parseData({
+      password: passwordString,
+      password_confirmation: passwordString,
+    }, 'update');
+
+    if (!passwordData.isValid()) {
+      return ReplyFor('server-error').send(res);
+    }
+
+    return (async () => {
+      const mailer = data.get('mailer');
+      const mailData = {
+        from: `Support <support@${req.get('host')}>`,
+        to: userEmail,
+        subject: 'Kingsley property-pro-lite Account Password Reset',
+        template: 'new_password_mail',
+        first_name: User.get('first_name'),
+        new_password: passwordString,
+      };
+
+      try {
+        await new Promise((resolve, reject) => {
+          mailer.messages().send(mailData, (error, body) => {
+            if (error) {
+              return reject(error);
+            }
+            return resolve(body);
+          });
+        });
+
+        User.set('password', passwordData.get('password'));
+        return res.status(200).json({
+          status: 204,
+        });
+      } catch (e) {
+        return Reply('An error occured while sending password reset mail')
+          .setStatusCode(500)
+          .send(res);
+      }
+    })();
+  }
 }
 
 export const {
@@ -278,5 +367,6 @@ export const {
   getUserById,
   getUserObject,
   getUsers,
+  resetUserPassword,
 } = Users;
 export default Users;
