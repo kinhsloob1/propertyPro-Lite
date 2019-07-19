@@ -2,7 +2,7 @@
 Property Pro Lite is a platform where people can create and/or search properties for sale or rent.
 
 
-[![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/) [![ForTheBadge uses-html](http://ForTheBadge.com/images/badges/uses-html.svg)](http://ForTheBadge.com) [![ForTheBadge uses-css](http://ForTheBadge.com/images/badges/uses-css.svg)](http://ForTheBadge.com) [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com) [![ForTheBadge uses-badges](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
+[![Build Status](https://travis-ci.org/kinhsloob1/propertyPro-Lite.svg?branch=develop)](https://travis-ci.org/kinhsloob1/propertyPro-Lite) [![ForTheBadge uses-git](http://ForTheBadge.com/images/badges/uses-git.svg)](https://GitHub.com/) [![ForTheBadge uses-html](http://ForTheBadge.com/images/badges/uses-html.svg)](http://ForTheBadge.com) [![ForTheBadge uses-css](http://ForTheBadge.com/images/badges/uses-css.svg)](http://ForTheBadge.com) [![ForTheBadge uses-js](http://ForTheBadge.com/images/badges/uses-js.svg)](http://ForTheBadge.com) [![ForTheBadge uses-badges](https://forthebadge.com/images/badges/uses-badges.svg)](https://forthebadge.com)
 
 
 ### Required Features
