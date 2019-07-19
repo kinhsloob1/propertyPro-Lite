@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { getProperties } from '../../controllers/properties/index';
+import { getProperties } from '../../../../controllers/properties/index';
 
 const router = Router({
   mergeParams: true,

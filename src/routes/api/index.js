@@ -1,9 +1,9 @@
 import { Router } from 'express';
-import apiRouter from './api/index';
+import v2Router from './v2/index';
 
 const router = Router({
   mergeParams: true,
 });
 
-router.use('/api', apiRouter);
+router.use('/v2', v2Router);
 export default router;

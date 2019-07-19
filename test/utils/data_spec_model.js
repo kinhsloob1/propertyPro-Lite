@@ -347,7 +347,288 @@ const spec = {
       },
     },
   },
+  property: {
+    id: {
+      type: 'number',
+      isUpdateable: false,
+      registration: {
+        required: false,
+      },
+      display: {
+        property: true,
+      },
+    },
+    description: {
+      type: 'string',
+      isUpdateable: true,
+      invalid: {
+        errorMessage: 'description should be above 3 charcters and below 255 characters.',
+        invalidParams: [
+          {
+            value: 'de',
+          },
+          {
+            value: String('a very long property description').repeat(10),
+          },
+        ],
+      },
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property description',
+      },
+      display: {
+        property: true,
+      },
+    },
+    owner: {
+      type: 'number',
+      isUpdateable: false,
+      registration: {
+        required: false,
+      },
+      display: {
+        property: true,
+      },
+    },
+    price: {
+      type: 'number',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property price',
+      },
+      display: {
+        property: true,
+      },
+    },
+    state: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid state or region',
+      },
+      invalid: {
+        errorMessage: 'Invalid state or region. Please insert a valid property region',
+        invalidParams: [
+          {
+            value: 'de',
+          },
+          {
+            value: String('a very long property state / region').repeat(10),
+          },
+          {
+            value: ' space_before_state',
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    city: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property city',
+      },
+      invalid: {
+        errorMessage: 'Invalid city. Please insert a valid property city',
+        invalidParams: [
+          {
+            value: 'de',
+          },
+          {
+            value: String('a very long property city inputed').repeat(10),
+          },
+          {
+            value: ' space_before_city',
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    address: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property address',
+      },
+      invalid: {
+        errorMessage: 'Invalid address.. address should be above 6 characters and less than 255 characters',
+        invalidParams: [
+          {
+            value: 'de',
+          },
+          {
+            value: String('a very long property address inputed').repeat(10),
+          },
+          {
+            value: ' space_before_address',
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    type: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property type',
+      },
+      invalid: {
+        errorMessage: 'Invalid property type... Please select a valid property type',
+        invalidParams: [
+          {
+            value: 'no type',
+          },
+          {
+            value: '3bedroom',
+          },
+          {
+            value: '2bed',
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    option: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'Invalid property option',
+      },
+      invalid: {
+        errorMessage: 'Invalid property option... Please select a valid property option',
+        invalidParams: [
+          {
+            value: 'salesss',
+          },
+          {
+            value: 'rentssss',
+          },
+          {
+            value: ' ',
+          },
+          {
+            value: 'buy',
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    images: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+        errorMessage: 'At least, an image is required',
+      },
+      invalid: {
+        errorMessage: 'Invalid images uploaded',
+        invalidParams: [
+          {
+            value: '/path/to/an/image.jpg',
+          },
+          {
+            value: 'fakeimages',
+          },
+          {
+            value: {},
+          },
+          {
+            value: false,
+          },
+        ],
+      },
+      display: {
+        property: true,
+      },
+    },
+    location: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: true,
+      },
+      invalid: {
+        errorMessage: 'Ooops.. invalid location. location can be a string with latitude and logitude seperated by a comma(,) or an object containing both',
+        invalidParams: [
+          {
+            value: '88.444 55.44444',
+          },
+          {
+            value: '88.44444',
+          },
+          {
+            value: ['string', 'another string'],
+            errorMessage: 'Ooops.. invalid location. Invalid latitude',
+          },
+          {
+            value: ['string', 116.4647],
+            errorMessage: 'Ooops.. invalid location. Invalid latitude',
+          },
+          {
+            value: {
+              lat: 80.68,
+              log: 145.67,
+            },
+            errorMessage: 'Ooops.. invalid location. Invalid latitude',
+          },
+          {
+            value: {
+              latitude: 'string',
+              logitude: 145.67,
+            },
+            errorMessage: 'Ooops.. invalid location. Invalid latitude',
+          },
+          {
+            value: {
+              latitude: 80.456,
+              logitude: 'string',
+            },
+            errorMessage: 'Ooops.. invalid location. Invalid logitude',
+          },
+          {
+            value: [116.4647, 'string'],
+            errorMessage: 'Ooops.. invalid location. Invalid logitude',
+          },
+          {
+            value: false,
+          },
+        ],
+      },
+      display: {
+        property: 'optional',
+      },
+    },
+    created_on: {
+      type: 'string',
+      isUpdateable: true,
+      registration: {
+        required: false,
+      },
+      display: {
+        property: true,
+      },
+    },
+  },
 };
 
 export default spec;
-export const { user: userSpec } = spec;
+export const {
+  user: userSpec,
+  property: propertySpec,
+} = spec;

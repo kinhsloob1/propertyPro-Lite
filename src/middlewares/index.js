@@ -13,7 +13,7 @@ class generalMiddleware {
         .set('envs', new Map(Object.entries(process.env)))
         .set('database', database)
         .set('mailer', mailGun({
-          api_key: req.data.get('envs').get('MAILGUN_API_KEY'),
+          apiKey: (req.data.get('envs').get('MAILGUN_API_KEY') || 'dummystring'),
           domain: req.get('host'),
           endpoint: '/v3',
         }));

@@ -15,7 +15,7 @@ import { userSpec } from '../../../utils/data_spec_model';
 import addUser from '../../../utils/add_user';
 
 const context = describe;
-const path = '/auth/signin';
+const path = '/api/v2/auth/signin';
 const STORE = new Map();
 
 before((done) => {
@@ -68,7 +68,7 @@ const getLoginData = dataStore => Object.keys(dataStore).reduce((regData, param)
   return data;
 }, {});
 
-describe('Sign In api end point ( /auth/sign-in )', () => {
+describe('Sign In api end point ( /api/v2/auth/sign-in )', () => {
   runInvalids({
     STORE,
     url: path,

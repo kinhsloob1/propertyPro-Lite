@@ -16,7 +16,7 @@ import addUser from '../../../utils/add_user';
 import generateInvalidTest from '../../../utils/generate_invalid_test';
 import generateValidTest from '../../../utils/generate_valid_test';
 
-const path = '/user/1';
+const path = '/api/v2/user/1';
 const STORE = new Map();
 
 const updateUserSpecs = Object.keys(userSpec).reduce((updateUserSpec, param) => {
@@ -72,7 +72,7 @@ after(() => {
   STORE.delete('Bearer');
 });
 
-describe('Update user record end point ( /user/:user-id )', () => {
+describe('Update user record end point ( /api/v2/user/:user-id )', () => {
   const updateData = getUpdateUserData(firstUser);
   const method = 'patch';
   describe('When PATCH request method is used to update user information', () => {

@@ -13,7 +13,7 @@ import testUserPermissionMiddleware from '../../middlewares/user/run_test_for_en
 import { firstUser, secondUser } from '../../../utils/users_data_model';
 import addUser from '../../../utils/add_user';
 
-const path = '/user/1';
+const path = '/api/v2/user/1';
 const STORE = new Map();
 
 before((done) => {
@@ -44,7 +44,7 @@ after(() => {
   STORE.delete('Bearer');
 });
 
-describe('Delete user record end point ( /user/:user-id )', () => {
+describe('Delete user record end point ( /api/v2/user/:user-id )', () => {
   const method = 'delete';
   describe('When Delete request method is used to remove user data', () => {
     testLoggedMiddleware({

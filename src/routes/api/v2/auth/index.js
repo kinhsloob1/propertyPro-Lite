@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { logUser, addUser, resetUserPassword } from '../../controllers/users/index';
+import { logUser, addUser, resetUserPassword } from '../../../../controllers/users/index';
 
 const router = Router({
   mergeParams: true,

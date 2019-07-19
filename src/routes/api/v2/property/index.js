@@ -1,12 +1,12 @@
 import { Router } from 'express';
-import { enforceLogged } from '../../middlewares/auth/index';
-import { ensureUserHasPermission, processProperty } from '../../middlewares/property/index';
+import { enforceLogged } from '../../../../middlewares/auth/index';
+import { ensureUserHasPermission, processProperty } from '../../../../middlewares/property/index';
 import {
   getPropertyData,
   addProperty,
   updateProperty,
   deleteProperty,
-} from '../../controllers/properties/index';
+} from '../../../../controllers/properties/index';
 import soldRouter from './sold/index';
 import flagRouter from './flag/index';
 import flagsRouter from './flags/index';

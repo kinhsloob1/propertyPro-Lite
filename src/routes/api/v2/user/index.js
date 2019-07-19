@@ -1,7 +1,7 @@
 import { Router } from 'express';
-import { enforceLogged } from '../../middlewares/auth/index';
-import { ensureUserHasPermission } from '../../middlewares/user/index';
-import { getUserData, updateUser, deleteUser } from '../../controllers/users/index';
+import { enforceLogged } from '../../../../middlewares/auth/index';
+import { ensureUserHasPermission } from '../../../../middlewares/user/index';
+import { getUserData, updateUser, deleteUser } from '../../../../controllers/users/index';
 
 const router = Router({
   mergeParams: true,

@@ -14,7 +14,7 @@ import { firstUser } from '../../../utils/users_data_model';
 import { userSpec } from '../../../utils/data_spec_model';
 
 const context = describe;
-const path = '/auth/signup';
+const path = '/api/v2/auth/signup';
 const STORE = new Map();
 
 before((done) => {
@@ -52,7 +52,7 @@ const registrationSpecs = Object.keys(userSpec).reduce((registrationSpec, param)
   return regSpecs;
 }, {});
 
-describe('Sign Up api end point ( /auth/sign-up )', () => {
+describe('Sign Up api end point ( /api/v2/auth/sign-up )', () => {
   runInvalids({
     STORE,
     url: path,
