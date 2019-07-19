@@ -1,0 +1,116 @@
+<% const {mountPoint = '/api/v1/'} = locals; %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('partials/header/meta'); %>
+    <title>Property Pro Lite Post Property</title>
+</head>
+
+<body>
+    <%-include('partials/header/main',{
+        mountPoint,
+        active: 'addProperty'
+    }); %>
+    <main>
+        <section id="postProperty" class="parent form">
+            <div class="header">
+                <div class="title">
+                    post a property
+                </div>
+                <div class="subtitle">
+                    please ensure you adhere to the folloeing rules and regulations prior to posting a property advert
+                </div>
+            </div>
+            <ul class="rules">
+                <li class="rule">Ensure property is available prior to upload</li>
+                <li class="rule">Upload of property images with faces is prohibited</li>
+                <li class="rule">Ensure property information is genuine</li>
+                <li class="rule">Harmful content will result to immediate ban</li>
+                <li class="rule">Agent contact must be available always</li>
+            </ul>
+            <form class="container">
+                <div class="input image">
+                    <div class="holder"></div>
+                    <label>Please select an image or multiple images for property</label>
+                    <div class="item">
+                        <label>Select image</label>
+                        <input type="file" multiple />
+                    </div>
+                </div>
+                <div class="input title">
+                    <label>Please insert property title</label>
+                    <input type="text" name="title" placeholder="# bedroom flat in lekki lagos state" required>
+                </div>
+                <div class="input type">
+                    <label>Please Select property type</label>
+                    <select name="type" required>
+                        <option value="" selected disabled>Select property type</option>
+                        <option value="4 bed">4 bedroom</option>
+                        <option value="3 bed">3 bedroom</option>
+                        <option value="2 bed">2 bedroom</option>
+                        <option value="1 bed">1 bedroom</option>
+                        <option value="1 room">self contain</option>
+                    </select>
+                </div>
+                <div class="input transfer_type">
+                    <label>Please Select property transfer type</label>
+                    <select name="transfer_type" required>
+                        <option value="" selected disabled>Select property transfer type</option>
+                        <option value="sale">sale</option>
+                        <option value="rent-month">rent / month</option>
+                        <option value="rent-year">rent / year</option>
+                    </select>
+                </div>
+                <div class="input rest_room">
+                    <label>Please the no of rest room(s) in property</label>
+                    <select name="rest_room" required>
+                        <option value="" selected disabled>No of rest room(s)</option>
+                        <option value="0">No rest room</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                </div>
+                <div class="input state">
+                    <label>Please select the state property is cited in</label>
+                    <select name="state" required>
+                        <option value="" selected disabled>Select a state</option>
+                        <option value="lagos">Lagos</option>
+                    </select>
+                </div>
+                <div class="input city">
+                    <label>Please select the city property is cited in</label>
+                    <select name="city" required>
+                        <option value="" selected disabled>Select a city</option>
+                        <option value="ikeja">ikeja</option>
+                    </select>
+                </div>
+                <div class="input description">
+                    <label>Please descript property exhaustively</label>
+                    <textarea type="text" name="description" placeholder="property description" required></textarea>
+                </div>
+                <div class="submit">
+                    <button>Submit</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <%-include('partials/footer/main',{
+        mountPoint
+    }); %>
+</body>
+<%-include('partials/footer/scripts'); %>
+<script>
+    window.addEventListener('load', function () {
+        let pages = new Pages();
+        pages.postPropertyPage.init();
+    });
+</script>
+
+</html>

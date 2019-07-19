@@ -1,0 +1,390 @@
+<% const {mountPoint = '/api/v1/'} = locals; %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('partials/header/meta'); %>
+    <title>Property Pro Lite - property data</title>
+</head>
+
+<body>
+    <%-include('partials/header/main',{
+        mountPoint,
+    }); %>
+    <main>
+        <section id="viewProperty" class="parent form">
+            <div class="title">
+                3 bedroom flat in likki, lagos island
+            </div>
+            <div class="images">
+                <div class="screen">
+                    <img src="assets/images/property/1.jpg">
+                    <div class="properties">
+                        <span class="price">
+                            80,000
+                            <span class="type">( rent )</span>
+                        </span>
+                        <span>3 beds</span>
+                        <span>4 baths</span>
+                        <span>2 garrage</span>
+                        <span class="address">plot 10, road 99 ikorodu layout, ikeja, Lagos state</span>
+                        <div class="actions">
+                            <div class="report">
+                                Report
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <button class="close">&times;</button>
+                                    </div>
+                                    <div class="brief">
+                                        As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                    </div>
+                                    <select name="reason">
+                                        <option value="" disabled selected>Select a reason</option>
+                                    </select>
+                                    <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                    <button class="submit">Submit</button>
+                                </div>
+                            </div>
+                            <button class="edit">Edit</button>
+                            <button class="delete">Delete</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="folder">
+                    <img src="assets/images/property/1.jpg">
+                    <img src="assets/images/property/1.jpg">
+                    <img src="assets/images/property/1.jpg">
+                    <img src="assets/images/property/1.jpg">
+                    <img src="assets/images/property/1.jpg">
+                    <img src="assets/images/property/1.jpg">
+                </div>
+            </div>
+            <div class="decsription">
+                A cheap and affordable property. It has three well furnished bedroom, two balconys that entails great view, four rest rooms, a well furnished sittin room, state of the art kitchen, water supply, constant electricity and many more.
+            </div>
+            <article class="agent-contact">
+                <address>Plot 5 road 4 gbei avenue nkpolu rumigbo portharcourt</address>
+                <div class="phone">08102829763</div>
+                <div class="email">kingsloob1@gmail.com</div>
+            </article>
+        </section>
+
+        <section id="properties" class="parent">
+            <div class="header">
+                <div class="title">
+                    Similar Property Adverts
+                </div>
+            </div>
+            <div class="container">
+                <div class="property">
+                    <div class="display">
+                        <div class="screen">
+                            <img src="assets/images/property/2.jpg" alt="">
+                        </div>
+                        <div class="tags">
+                            <div class="rent">For Rent</div>
+                        </div>
+                        <div class="amount">
+                            200,000
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <img src="assets/images/property/2.jpg" alt="">
+                        <img src="assets/images/property/2.jpg" alt="">
+                        <img src="assets/images/property/2.jpg" alt="">
+                        <img src="assets/images/property/2.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="description">
+                            A great house in london. COmfortability our watch word
+                        </div>
+                        <div class="others">
+                            <div class="facilities">
+                                <div class="bed">3 beds</div>
+                                <div class="bath">5 baths</div>
+                            </div>
+                            <div class="options">
+                                more
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <btton class="close">&times</button>
+                                    </div>
+                                    <div class="report">
+                                        Report
+                                        <div class="container">
+                                            <div class="title">
+                                                close
+                                                <button class="close">&times;</button>
+                                            </div>
+                                            <div class="brief">
+                                                As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                            </div>
+                                            <select name="reason">
+                                                <option value="" disabled selected>Select a reason</option>
+                                            </select>
+                                            <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                            <button class="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <button class="view">View</button>
+                                    <button class="edit">Edit</button>
+                                    <button class="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="display">
+                        <div class="screen">
+                            <img src="assets/images/property/3.jpg" alt="">
+                        </div>
+                        <div class="tags">
+                            <div class="rent">For Rent</div>
+                        </div>
+                        <div class="amount">
+                            100,000
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <img src="assets/images/property/3.jpg" alt="">
+                        <img src="assets/images/property/3.jpg" alt="">
+                        <img src="assets/images/property/3.jpg" alt="">
+                        <img src="assets/images/property/3.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="description">
+                            A great house in london. COmfortability our watch word
+                        </div>
+                        <div class="others">
+                            <div class="facilities">
+                                <div class="bed">3 beds</div>
+                                <div class="bath">5 baths</div>
+                            </div>
+                            <div class="options">
+                                more
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <btton class="close">&times</button>
+                                    </div>
+                                    <div class="report">
+                                        Report
+                                        <div class="container">
+                                            <div class="title">
+                                                close
+                                                <button class="close">&times;</button>
+                                            </div>
+                                            <div class="brief">
+                                                As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                            </div>
+                                            <select name="reason">
+                                                <option value="" disabled selected>Select a reason</option>
+                                            </select>
+                                            <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                            <button class="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <button class="view">View</button>
+                                    <button class="edit">Edit</button>
+                                    <button class="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="display">
+                        <div class="screen">
+                            <img src="assets/images/property/4.jpg" alt="">
+                        </div>
+                        <div class="tags">
+                            <div class="sale">For Sale</div>
+                        </div>
+                        <div class="amount">
+                            200,000,000
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <img src="assets/images/property/4.jpg" alt="">
+                        <img src="assets/images/property/4.jpg" alt="">
+                        <img src="assets/images/property/4.jpg" alt="">
+                        <img src="assets/images/property/4.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="description">
+                            A great house in london. COmfortability our watch word
+                        </div>
+                        <div class="others">
+                            <div class="facilities">
+                                <div class="bed">3 beds</div>
+                                <div class="bath">5 baths</div>
+                            </div>
+                            <div class="options">
+                                more
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <btton class="close">&times</button>
+                                    </div>
+                                    <div class="report">
+                                        Report
+                                        <div class="container">
+                                            <div class="title">
+                                                close
+                                                <button class="close">&times;</button>
+                                            </div>
+                                            <div class="brief">
+                                                As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                            </div>
+                                            <select name="reason">
+                                                <option value="" disabled selected>Select a reason</option>
+                                            </select>
+                                            <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                            <button class="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <button class="view">View</button>
+                                    <button class="edit">Edit</button>
+                                    <button class="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="display">
+                        <div class="screen">
+                            <img src="assets/images/property/5.jpg" alt="">
+                        </div>
+                        <div class="tags">
+                            <div class="sale">For Sale</div>
+                        </div>
+                        <div class="amount">
+                            800,000
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <img src="assets/images/property/5.jpg" alt="">
+                        <img src="assets/images/property/5.jpg" alt="">
+                        <img src="assets/images/property/5.jpg" alt="">
+                        <img src="assets/images/property/5.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="description">
+                            A great house in london. COmfortability our watch word
+                        </div>
+                        <div class="others">
+                            <div class="facilities">
+                                <div class="bed">3 beds</div>
+                                <div class="bath">5 baths</div>
+                            </div>
+                            <div class="options">
+                                more
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <btton class="close">&times</button>
+                                    </div>
+                                    <div class="report">
+                                        Report
+                                        <div class="container">
+                                            <div class="title">
+                                                close
+                                                <button class="close">&times;</button>
+                                            </div>
+                                            <div class="brief">
+                                                As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                            </div>
+                                            <select name="reason">
+                                                <option value="" disabled selected>Select a reason</option>
+                                            </select>
+                                            <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                            <button class="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <button class="view">View</button>
+                                    <button class="edit">Edit</button>
+                                    <button class="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="property">
+                    <div class="display">
+                        <div class="screen">
+                            <img src="assets/images/property/6.jpg" alt="">
+                        </div>
+                        <div class="tags">
+                            <div class="sale">For Sale</div>
+                        </div>
+                        <div class="amount">
+                            150,000
+                        </div>
+                    </div>
+                    <div class="preview">
+                        <img src="assets/images/property/6.jpg" alt="">
+                        <img src="assets/images/property/6.jpg" alt="">
+                        <img src="assets/images/property/6.jpg" alt="">
+                        <img src="assets/images/property/6.jpg" alt="">
+                    </div>
+                    <div class="details">
+                        <div class="description">
+                            A great house in london. COmfortability our watch word
+                        </div>
+                        <div class="others">
+                            <div class="facilities">
+                                <div class="bed">3 beds</div>
+                                <div class="bath">5 baths</div>
+                            </div>
+                            <div class="options">
+                                more
+                                <div class="container">
+                                    <div class="title">
+                                        close
+                                        <btton class="close">&times</button>
+                                    </div>
+                                    <div class="report">
+                                        Report
+                                        <div class="container">
+                                            <div class="title">
+                                                close
+                                                <button class="close">&times;</button>
+                                            </div>
+                                            <div class="brief">
+                                                As an end user, you have the ability to report a property advert or flag it as the need may arise.
+                                            </div>
+                                            <select name="reason">
+                                                <option value="" disabled selected>Select a reason</option>
+                                            </select>
+                                            <textarea name="descrption" rows="5" placeholder="Insert a brief description"></textarea>
+                                            <button class="submit">Submit</button>
+                                        </div>
+                                    </div>
+                                    <button class="view">View</button>
+                                    <button class="edit">Edit</button>
+                                    <button class="delete">Delete</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <%-include('partials/footer/main',{
+        mountPoint
+    }); %>
+</body>
+<%-include('partials/footer/scripts'); %>
+<script>
+    window.addEventListener('load', function () {
+        let pages = new Pages();
+        pages.propertyPage.init();
+    });
+</script>
+
+</html>

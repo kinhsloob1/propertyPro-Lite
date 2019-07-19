@@ -1,0 +1,73 @@
+<% const {mountPoint = '/api/v1/'} = locals; %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('partials/header/meta'); %>
+    <title>Property Pro Lite Sign Up Page</title>
+</head>
+
+<body>
+    <%-include('partials/header/main',{
+        mountPoint,
+        active: 'signup'
+    }); %>
+    <main>
+        <section id="register" class="parent form">
+            <div class="header">
+                <div class="title">
+                    Registration
+                </div>
+                <div class="subtitle">
+                    Unlock all the features for free by creating an account
+                </div>
+            </div>
+            <form class="container" action="">
+                <div class="input">
+                    <label>Please insert your first name</label>
+                    <input type="text" name="first_name" placeholder="First Name" required>
+                </div>
+                <div class="input">
+                    <label>Please insert your last name</label>
+                    <input type="text" name="last_name" placeholder="Last Name" required>
+                </div>
+                <div class="input">
+                    <label>Please insert your email address</label>
+                    <input type="email" name="email" placeholder="user@email.com" required>
+                </div>
+                <div class="input">
+                    <label>Please insert your phone number</label>
+                    <input type="text" name="phoneNumber" placeholder="08123456789" required>
+                </div>
+                <div class="input">
+                    <label>Please insert a password</label>
+                    <input type="password" name="password" placeholder="**********" required>
+                </div>
+                <div class="input">
+                    <label>Please insert password again</label>
+                    <input type="password" name="confirmPassword" placeholder="**********" required>
+                </div>
+                <div class="input">
+                    <label>Please insert your home address</label>
+                    <textarea name="address" placeholder="block 5 plot 2 off lagos badagry layout lagos/ badagry express way" required></textarea>
+                </div>
+                <div class="submit">
+                    <button>Submit</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <%-include('partials/footer/main',{
+        mountPoint
+    }); %>
+</body>
+
+<%-include('partials/footer/scripts'); %>
+<script>
+    window.addEventListener('load', function () {
+        let pages = new Pages();
+        pages.registrationPage.init();
+    });
+</script>
+
+</html>

@@ -1,0 +1,52 @@
+<% const {mountPoint = '/api/v1/'} = locals; %>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <%-include('partials/header/meta'); %>
+    <title>Property Pro Lite Login Page</title>
+</head>
+
+<body>
+    <%-include('partials/header/main',{
+        mountPoint,
+        active: 'signin'
+    }); %>
+    <main>
+        <section id="login" class="parent form">
+            <div class="header">
+                <div class="title">
+                    Login
+                </div>
+                <div class="subtitle">
+                    please provide authentication details
+                </div>
+            </div>
+            <form class="container" action="">
+                <div class="input">
+                    <label>Please insert your email</label>
+                    <input type="email" name="login" placeholder="user@me.com" required>
+                </div>
+                <div class="input">
+                    <label>Please insert your password</label>
+                    <input type="password" name="password" placeholder="**********" required>
+                </div>
+                <div class="submit">
+                    <button>Submit</button>
+                </div>
+            </form>
+        </section>
+    </main>
+    <%-include('partials/footer/main',{
+        mountPoint
+    }); %>
+</body>
+<%-include('partials/footer/scripts'); %>
+<script>
+    window.addEventListener('load', function () {
+        let pages = new Pages();
+        pages.loginPage.init();
+    });
+</script>
+
+</html>
