@@ -266,7 +266,7 @@ class Properties {
   }
 
   static getPropertyFlag(req) {
-    const propertyFlagDb = this.getFlagsDb(req);
+    const propertyFlagDb = Properties.getFlagsDb(req);
     const propertyFlagId = parseInt(req.params.propertyFlagId, 10) || 0;
     return propertyFlagDb.get(propertyFlagId);
   }
@@ -282,7 +282,7 @@ class Properties {
     }
 
     const property = data.get('Property');
-    const flagsDb = this.getFlagsDb(req);
+    const flagsDb = Properties.getFlagsDb(req);
 
     const id = (
       (flagsDb.size > 0)
@@ -305,6 +305,7 @@ class Properties {
 
     const flags = property.get('flags') || [];
     flags.push(flagMapData);
+    property.set('flags', flags);
 
     const savedData = flagData.getSavedData();
     const reply = Reply('Property flagged succesfully', true);
@@ -376,7 +377,7 @@ class Properties {
   static deletePropertyFlag(req, res) {
     const { data } = req;
     const propertyFlag = data.get('PropertyFlag');
-    const propertyFlagsDb = this.getFlagsDb(req);
+    const propertyFlagsDb = Properties.getFlagsDb(req);
 
     propertyFlagsDb.delete(propertyFlag.get('id'));
     return Reply('Property flag removed succesfully')
@@ -404,7 +405,7 @@ class Properties {
     if (Array.isArray(propertyFlags)) {
       propertyFlags = propertyFlags.reverse();
       propertyFlags.forEach((propertyFlag) => {
-        const propertyFlagObject = this.getPropertyFlagObject(propertyFlag);
+        const propertyFlagObject = Properties.getPropertyFlagObject(propertyFlag);
         if (propertyFlagObject.isOk()) {
           if (offsetCount < offset) {
             offsetCount += 1;
