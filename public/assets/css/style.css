@@ -1,0 +1,1922 @@
+html,body,header,main,section,div,span,footer{
+    padding: 0;
+    margin: 0;
+}
+
+header > .parent,
+footer > .parent,
+main > .parent{
+    padding: 10px 15%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    background: rgb(73, 158, 255);
+    flex-grow: 1;
+}
+
+header > .contact > .phone,
+header > .contact > .email{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: capitalize;
+    color: rgb(255, 255, 255);
+    font-weight: 500;
+    padding-right: 30px;
+    border-right: 1px solid rgb(255, 255, 255);
+    font-size: 80%;
+}
+
+header > .contact > .email{
+    padding-left: 30px;
+    padding-right: 0px;
+    border: unset;
+}
+
+header > .contact > .socials{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+}
+
+header > .contact > .socials > .social{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgb(230, 230, 230);
+    border: 0.3px solid rgb(110, 178, 255);
+    width: 25px;
+    height: 25px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+header > .contact > .socials > .social > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+header > .contact > .socials > .social:not(:last-child){
+    margin-right: 20px;
+}
+
+header > .site,
+header > .navigation{
+    padding-top: 0px;
+    padding-bottom: 0px;
+    background: transparent;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+header > .site > .logo{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 90px;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+header > .site > .logo > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: fill;
+    z-index: 1;
+}
+
+header > .site > .about{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: auto;
+    flex-wrap: wrap;
+    background: rgb(247, 247, 247);
+    padding: 20px 0px 20px 15px;
+}
+
+header > .site > .about > *{
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+}
+
+header > .site > .about > *:not(:last-child){
+    margin-right: 20px;
+}
+
+header > .site > .about > * > .icon{
+    width: 50px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    margin-right: 10px;
+    position: relative;
+    z-index: 0;
+}
+
+header > .site > .about > * > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+header > .site > .about > * > .content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 120px;
+    white-space: normal;
+    word-wrap: break-word;
+    font-size: 80%;
+}
+
+header > .navigation{
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    background-color: rgb(65, 65, 65);
+    background-image: linear-gradient(to bottom,rgb(77, 77, 77) 8%,rgb(32, 32, 32) 93%);
+}
+
+header > .navigation > nav{
+    display: flex;
+    justify-content: flex-start;
+    align-items: stretch;
+    background: transparent;
+    flex-wrap: wrap;
+}
+
+header > .navigation > nav > a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    font-size: 85%;
+    font-weight: 600;
+    text-decoration: unset;
+    transition: all 0.3s linear;
+}
+
+header > .navigation > nav > a:not(:last-child){
+    margin-right: 25px;
+}
+
+header > .navigation > nav > a.active,
+header > .navigation > nav > a:hover{
+    color: rgb(73, 158, 255);
+}
+
+main{
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+main > .parent.form{
+    background-color: rgb(255,255,255);
+    align-items: flex-start;
+    padding-top: unset;
+}
+
+main > .parent.form > .container{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(247,247,247);
+    padding: 10px 30px;
+    flex-wrap: wrap;
+}
+
+main > .parent.form > .container > .input{
+    display: flex;
+    width: 320px;
+    flex-wrap: wrap;
+    margin: 0 20px 15px 0;
+}
+
+main > .parent.form > .container > .input > *{
+    display: flex;
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+main > .parent.form > .container > .input > *:last-child{
+    margin-bottom: unset;
+}
+
+main > .parent.form > .container > .input > label{
+    color: rgb(63, 63, 63);
+    font-size: 80%;
+    font-weight: 600;
+}
+
+main > .parent.form > .container > .input > .error{
+    color: rgb(252, 29, 29);
+    font-size: 80%;
+    font-weight: 300;
+}
+
+main > .parent.form > .container > .input > input,
+main > .parent.form > .container > .input > select{
+    height: 32px;
+    border: 0.3px solid rgb(161, 161, 161);
+    border-radius: 5px;
+    outline-style: unset;
+}
+
+main > .parent.form > .container > .input > textarea{
+    height: 80px;
+    border: 0.3px solid rgb(161, 161, 161);
+    border-radius: 5px;
+    outline-style: unset;
+}
+
+main > .parent.form > .container > .submit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+
+main > .parent.form > .container > .submit > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: rgb(73, 158, 255);
+    border: 0.1px solid rgb(161, 161, 161);
+    border-radius: 20px;
+    cursor: pointer;
+}
+
+main > .parent.form > .container > .submit > button:hover:not(:disabled){
+    background-color: rgb(26, 117, 221);
+}
+
+main > .parent.form > .container > .submit > button:disabled{
+    background: rgb(161, 161, 161);
+    cursor: not-allowed;
+}
+
+main > #login.parent.form > .container,
+main > #verify-token.parent.form > .container,
+main > #update-password.parent.form > .container{
+    flex-direction: column;
+}
+
+main > #forgot-password.parent.form > .header > .subtitle,
+main > #verify-token.parent.form > .header > .subtitle,
+main > #update-password.parent.form > .header > .subtitle{
+    color: rgb(206, 0, 0);
+    font-style: normal;
+    font-size: 75%;
+    margin-top: 15px;
+}
+
+main > #update-password.parent.form > .header > .subtitle{
+    color: rgb(0, 206, 0);
+}
+
+section#filter{
+    background-color: rgb(65, 65, 65);
+    background-image: url('https://photos.purplebricks.ca/photos/public/for_sale/201904/850289/bungalow-stony-plain-1600-10034703.jpg');
+    background-position: center;
+    background-size: cover;
+    padding-top: 5%;
+    padding-bottom: 5%;
+    justify-content: center;
+    align-items: center;
+}
+
+section#filter > .container{
+    display: flex;
+    width: 100%;
+    border: 4px solid rgb(73, 158, 255);
+    border-radius: 3px;
+    align-items: stretch;
+    flex-wrap: wrap;
+}
+
+section#filter > .container > .sections,
+section#filter > .container > .sections > .types,
+section#filter > .container > .search{
+    padding: 3px;
+    background: rgb(73, 158, 255);
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 25%;
+}
+
+section#filter > .container > .sections > .title,
+section#filter > .container > .sections > .title > .header,
+section#filter > .container > .sections > .title > .content{
+    display: flex;
+    width: 100%;
+    word-wrap: break-word;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    color: rgb(255, 255, 255);
+    text-align: center;
+    flex-wrap: wrap;
+}
+
+section#filter > .container > .sections > .title{
+    margin-bottom: 15px;
+}
+
+section#filter > .container > .sections > .title > .header{
+    font-weight: 300;
+    font-size: 70%;
+}
+
+section#filter > .container > .sections > .title > .content{
+    font-weight: 900;
+    font-size: 130%;
+}
+
+section#filter > .container > .sections > .types{
+    width: 100%;
+}
+
+section#filter > .container > .sections > .types > .section{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    border: 0.2px solid rgb(233, 233, 233);
+    flex-wrap: wrap;
+    width: 50%;
+    flex-direction: column;
+    padding: 12px;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+section#filter > .container > .sections > .types > .section.all{
+    width: 100%;
+}
+
+section#filter > .container > .sections > .types > .section > .icon{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+section#filter > .container > .sections > .types > .section > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+section#filter > .container > .sections > .types > .section > .name{
+    font-size: 100%;
+    font-weight: 800;
+    color: rgb(255, 255, 255);
+    letter-spacing: 2.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5px;
+    text-transform: uppercase;
+}
+
+section#filter > .container > .sections > .types > .section.active,
+section#filter > .container > .sections > .types > .section:hover{
+    background: rgb(77, 125, 179);
+}
+
+section#filter > .container > .search{
+    display: flex;
+    flex-grow: 1;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 15px 25px;
+    background: rgb(255, 255, 255);
+    border: 3px solid rgb(73, 158, 255);
+}
+
+section#filter > .container > .search > .text-search{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    align-items: stretch;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .text-search > .label{
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: center;
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > .text-search > .label > .icon{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 25px;
+    height: 25px;
+    margin-right: 10px;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+section#filter > .container > .search > .text-search > .label > .icon > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+section#filter > .container > .search > .text-search > .label > .text{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    font-weight: 800;
+    font-size: 100%;
+    letter-spacing: 2px;
+}
+
+section#filter > .container > .search > .text-search > input,
+section#filter > .container > .search > .price > input{
+    display: flex;
+    flex-grow: 1;
+    height: 32px;
+    border-radius: 3px;
+    color: rgb(65, 65, 65);
+    border: 0.5px solid rgb(156, 156, 156);
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > select{
+    display: flex;
+    flex-grow: 1;
+    height: 32px;
+    border-radius: 3px;
+    color: rgb(65, 65, 65);
+    border: 0.5px solid rgb(156, 156, 156);
+    min-width: 30%;
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .price{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .price > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+section#filter > .container > .search > .price > .label{
+    flex-grow: unset;
+    margin-right: 10px;
+}
+
+section#filter > .container > .search > .submit{
+    display: flex;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section#filter > .container > .search > .submit > button{
+    display: inline-flex;
+    width: auto;
+    background: rgb(73, 158, 255);
+    padding: 10px;
+    font-size: 90%;
+    font-weight: 600;
+    color: rgb(255, 255, 255);
+    border-radius: 20px;
+    border: unset;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+section#filter > .container > .search > .submit > button:hover{
+    background: rgb(110, 178, 255);
+}
+
+section#properties{
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    width: 100%;
+    padding-top: 30px;
+}
+
+section#properties > .container{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    background-color: rgb(247, 247, 247);
+}
+
+section#properties > .container > .property{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: stretch;
+    width: 280px;
+    margin: 0 10px 20px 0;
+    border-radius: 8px;
+    border: 0.3px solid rgb(156, 156, 156);
+    transition: all 0.2s ease-in;
+}
+
+section#properties > .container > .property:hover{
+    box-shadow: 4px 4px 5px rgb(206, 206, 206);
+}
+
+section#properties > .container > .property > .display{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 0;
+    cursor: pointer;
+    height: 300px;
+    overflow: hidden;
+    border-radius: 8px 8px 0 0;
+}
+
+section#properties > .container > .property > .display > .screen,
+section#properties > .container > .property > .display > .screen > img{
+    display: flex;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background-color: rgb(32, 32, 32);
+}
+
+section#properties > .container > .property > .display > .screen > img{
+    z-index: 2;
+    background-color: unset;
+    object-fit: cover;
+}
+
+section#properties > .container > .property > .display > .tags{
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 3;
+    background: transparent;
+    top: 20px;
+    left: 0;
+}
+
+section#properties > .container > .property > .display > .tags > *{
+    padding: 5px 9px;
+    font-size: 70%;
+    font-weight: 800;
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    color: rgb(247, 247, 247);
+    margin: 0 10px 10px 0;
+    border-radius: 3px;
+}
+
+section#properties > .container > .property > .display > .tags > .rent{
+    background: rgb(0, 81, 187);
+}
+
+section#properties > .container > .property > .display > .tags > .sale{
+    background: rgb(26, 156, 0);
+}
+
+section#properties > .container > .property > .display > .tags > .hot{
+    background: rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .display > .amount{
+    display: flex;
+    max-width: 100%;
+    justify-content: flex-start;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    position: absolute;
+    z-index: 5;
+    background-color: rgba(32, 32, 32,0.9);
+    left: 0;
+    bottom: 30px;
+    color: rgb(255, 255, 255);
+    font-size: 100%;
+    font-weight: 900;
+    padding: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+}
+
+section#properties > .container > .property > .display > .amount::before{
+    content: '\20a6';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+section#properties > .container > .property > .preview{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    padding: 10px 10px 0 10px;
+    flex-wrap: wrap;
+}
+
+section#properties > .container > .property > .preview > *{
+    display: flex;
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    background-color: rgba(206, 206, 206,0.7);
+    flex-wrap: wrap;
+}
+
+section#properties > .container > .property > .details > .description{
+    width: 100%;
+    display: flex;
+    padding: 10px 3px;
+    font-size: 85%;
+    font-weight: 500;
+    text-align: center;
+}
+
+section#properties > .container > .property > .details > .others{
+    width: 100%;
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    align-items: stretch;
+    padding: 10px 20px;
+    border-radius: 0 0 8px 8px;
+    background-color: rgb(110, 178, 255);
+    font-size: 80%;
+    font-weight: 500;
+}
+
+section#properties > .container > .property > .details > .others > .facilities{
+    max-width: 85%;
+    display: flex;
+    flex-wrap: nowrap;
+    background-color: transparent;
+    align-items: stretch;
+    border-radius: 0 0 0 8px;
+    overflow: hidden;
+}
+
+section#properties > .container > .property > .details > .others > .facilities > * {
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .facilities > *:last-child{
+    margin-right: unset;
+}
+
+section#properties > .container > .property > .details > .others > .options{
+    width: 14%;
+    margin-left: auto;
+    display: flex;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 6;
+    cursor: pointer;
+    border-radius: 0 0 8px 0;
+}
+
+section#properties > .container > .property > .details > .others > .options:first-child{
+    border-radius: 0 0 8px 0;
+    overflow: hidden;
+}
+
+section#properties > .container > .property > .details > .others > .options > *{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container{
+    display: none;
+    width: 110px;
+    z-index: 7;
+    position: absolute;
+    bottom: -10px;
+    right: -20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    border-bottom: 0.1px solid rgb(211, 211, 211);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > button,
+section#properties > .container > .property > .details > .others > .options > .container > .report{
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > button:hover,
+section#properties > .container > .property > .details > .others > .options > .container > .report:hover{
+    background-color: rgb(156, 156, 156);
+}
+
+section#properties > .container > .property > .details > .others > .options:hover > .container{
+    display: flex;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .delete{
+    background: rgb(206, 0, 0);
+    color: rgb(247, 247, 247);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .delete:hover{
+    background: rgb(139, 1, 1);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report{
+    position: relative;
+    z-index: 7;
+    color: rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > *{
+    width: 100%;
+    display: flex;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container{
+    display: none;
+    width: 160px;
+    z-index: 8;
+    position: absolute;
+    bottom: 0;
+    left: -160px;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    border: 1px solid rgb(206, 0, 0);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    color: rgb(58, 58, 58);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .brief{
+    font-size: 90%;
+    font-weight: 500;
+    padding: 10px 8px;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > select,
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > textarea{
+    display: flex;
+    padding: unset;
+    margin-bottom: 3px;
+    height: 32px;
+    border-radius: unset;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > textarea{
+    height: 70px;
+    margin-bottom: unset;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit{
+    background-color: rgb(156, 156, 156);
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    cursor: pointer;
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit:hover{
+    background-color: rgb(58, 150, 255);
+}
+
+section#properties > .container > .property > .details > .others > .options > .container > .report:hover > .container{
+    display: flex;
+}
+
+section#propertiesMap{
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    width: 100%;
+}
+
+section#propertiesMap > .container{
+    display: flex;
+    justify-content: stretch;
+    align-items: stretch;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 300px;
+    background-color: rgb(247, 247, 247);
+}
+
+#viewProperty{
+    flex-wrap: wrap;
+    flex-direction: column;
+    flex-grow: 1;
+    width: 100%;
+}
+
+#viewProperty > *{
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    width: 100%;
+    overflow: hidden;
+}
+
+#viewProperty > .title{
+    font-size: 200%;
+    text-transform: uppercase;
+    text-align: left;
+    font-weight: 300;
+    letter-spacing: 2px;
+    margin-top: 20px;
+    white-space: wrap;
+    word-wrap: break-word;
+    padding: 10px 0 10px 0;
+}
+
+#viewProperty > .images{
+    width: 100%;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+#viewProperty > .images > .screen{
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+    height: 350px;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+#viewProperty > .images > .screen > img{
+    display: flex;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    object-fit: cover;
+}
+
+#viewProperty > .images > .screen > .properties{
+    display: flex;
+    flex-wrap: wrap;
+    padding: 20px 10px 5px;
+    width: 100%;
+    position: absolute;
+    z-index: 3;
+    background: rgba(0,0,0,0.8);
+    bottom: 0;
+    left: 0;
+}
+
+#viewProperty > .images > .screen > .properties > *,
+#viewProperty > .images > .screen > .properties > .actions > *{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: rgb(255,255,255);
+    font-size: 100%;
+    font-weight: 400;
+    margin-right: 20px
+}
+
+#viewProperty > .images > .screen > .properties > .price{
+    width: 100%;
+    font-size: 150%;
+    font-weight: 600;
+    justify-content: flex-start;
+    margin-bottom: 10px;
+    margin-right: unset;
+}
+
+#viewProperty > .images > .screen > .properties > .price::before{
+    content: '\20a6';
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 2px;
+}
+
+#viewProperty > .images > .screen > .properties > .price > .type{
+    display: flex;
+    margin-left: 8px;
+    text-transform: uppercase;
+    align-content: center;
+}
+
+#viewProperty > .images > .screen > .properties > .address{
+    display: flex;
+    text-transform: uppercase;
+    align-content: center;
+    margin-right: unset;
+    width: 100%;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+#viewProperty > .images > .screen > .properties > .actions{
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 10px 0;
+    width: 100%;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > *{
+    background: transparent;
+    display: flex;
+    color: rgb(73, 158, 255);
+    border: unset;
+    cursor: pointer;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report{
+    position: relative;
+    z-index: 5;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .delete{
+    color: rgb(190,0,0);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container{
+    display: none;
+    position: absolute;
+    right: -300px;
+    width: 300px;
+    bottom: 0;
+    z-index: 6;
+    justify-content: center;
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    box-shadow: 1px 1px 5px rgb(58, 58, 58);
+    padding: 10px 10px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 10px 10px 10px;
+    border: unset;
+    color: rgb(58, 58, 58);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title{
+    padding-bottom: 10px;
+    border-bottom: 0.3px solid rgb(156, 156, 156);
+    flex-wrap: nowrap;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > *{
+    display: flex;
+    align-items: stretch;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > *:not(:last-child){
+    padding: 10px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > .close{
+    border: unset;
+    color: rgb(206, 0, 0);
+    cursor: pointer;
+    margin-left: auto;
+    font-size: 130%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .title > .close:hover{
+    font-size: 180%;
+    font-weight: 700;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .brief{
+    font-size: 90%;
+    font-weight: 500;
+    padding: 10px 8px;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > select,
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > textarea{
+    display: flex;
+    padding: unset;
+    margin-bottom: 3px;
+    height: 32px;
+    border-radius: unset;
+    border: 1px solid rgb(206, 206, 206);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > textarea{
+    height: 90px;
+    margin-bottom: unset;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit{
+    background-color: rgb(156, 156, 156);
+    justify-content: center;
+    align-items: center;
+    color: rgb(32, 32, 32);
+    cursor: pointer;
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit:hover{
+    background-color: rgb(58, 150, 255);
+}
+
+#viewProperty > .images > .screen > .properties > .actions > .report:hover > .container{
+    display: flex;
+}
+
+#viewProperty > .images > .folder{
+    background: rgba(0,0,0);
+    display: flex;
+    width: 100%;
+    overflow: hidden;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 20px;
+}
+
+#viewProperty > .images > .folder > *{
+    display: flex;
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+#viewProperty > .description{
+    font-size: 100%;
+    font-weight: 600;
+    letter-spacing: 2px;
+    margin: 10px 0;
+}
+
+#viewProperty > .agent-contact{
+    background: rgb(73, 158, 255);
+    padding: 10px 0;
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    margin: 15px 0;
+}
+
+#viewProperty > .agent-contact > *{
+    display: flex;
+    width: 100%;
+    justify-content: flex-start;
+    font-size: 120%;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+#postProperty > .rules{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 20px;
+    padding-top: 20px;
+    background: rgb(247, 247, 247);
+    list-style-type: disc;
+    align-items: stretch;
+}
+
+#postProperty > .rules > *{
+    display: flex;
+    width: 100%;
+    font-size: 80%;
+    font-weight: 400;
+    align-items: center;
+}
+
+#postProperty > .rules > *::before{
+    content: '*';
+    display: flex;
+    margin-right: 3px;
+    align-items: center;
+}
+
+#postProperty > .rules > *:not(:last-child){
+    margin-bottom: 12px;
+}
+
+#postProperty > .container > .input{
+    width: 100%;
+}
+
+#postProperty > .container > .input.image{
+    display: flex;
+    width: 100%;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+#postProperty > .container > .input > *{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+#postProperty > .container > .input.image > .holder{
+    padding: 20px 10px;
+    align-items: stretch;
+    justify-content: center;
+}
+
+#postProperty > .container > .input.image > .holder > .image{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 180px;
+    height: 250px;
+    overflow: hidden;
+    border: 5px dashed rgb(73, 158, 255);
+    border-style: groove;
+    border-radius: 15px;
+    background: rgb(100,100,100);
+    z-index: 0;
+    margin: 0 10px 10px 0;
+}
+
+#postProperty > .container > .input.image > .holder > .image > img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    object-fit: cover;
+    top: 0;
+    left: 0;
+}
+
+#postProperty > .container > .input.image > .holder > .image > .remove{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    z-index: 2;
+    top: 10px;
+    right: 10px;
+    background: transparent;
+    color: rgb(255,0,0);
+    font-size: 160%;
+    font-weight: 800;
+    border: unset;
+}
+
+#postProperty > .container > .input.image > label,
+#postProperty > .container > .input.image > .error{
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#postProperty > .container > .input.image > .item{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    width: 100%;
+    position: relative;
+    z-index: 0;
+    width: 100%;
+    height: 40px;
+    margin-bottom: 10px;
+}
+
+#postProperty > .container > .input.image > .item > label,
+#postProperty > .container > .input.image > .item > input{
+    font-size: 80%;
+    font-weight: 700;
+    margin-bottom: 15px;
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    width: 200px;
+    height: 100%;
+    background: rgb(73, 158, 255);
+    border-radius: 10px;
+    color: rgb(12, 12, 12);
+    cursor: pointer;
+    text-align: center;
+}
+
+#postProperty > .container > .input.image > .item > input:hover:not(:disabled),
+#postProperty > .container > .input.image > .item > input:hover:not(:disabled) ~ label{
+    cursor: pointer;
+    background: rgb(0, 79, 168);
+}
+
+#postProperty > .container > .input.image > .item > input:disabled,
+#postProperty > .container > .input.image > .item > input:disabled ~ label{
+    background: rgb(100,100,100);
+    cursor: not-allowed;
+}
+
+#postProperty > .container > .input.image > .item > input{
+    opacity: 0
+}
+
+#postProperty > .container > .input > label,
+#postProperty > .container > .input > input,
+#postProperty > .container > .input > select,
+#postProperty > .container > .input > textarea,
+#postProperty > .container > .input > div.error{
+    width: 60%;
+}
+
+#postProperty > .container > .input{
+    justify-content: center;
+    align-items: center;
+}
+
+section#services{
+    flex-wrap: wrap;
+    background: rgb(255, 255, 255);
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+section#services > .container{
+    display: flex;
+    justify-content: center;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background-color: rgb(247, 247, 247);
+}
+
+section#services > .container > .service{
+    width: 30%;
+    height: auto;
+    display: flex;
+    background-color: transparent;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+section#services > .container > .service:not(:last-child){
+    margin-right: 2%;
+}
+
+section#services > .container > .service > *{
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+section#services > .container > .service > .icon{
+    width: 80px;
+    height: 80px;
+    border: 2px solid rgb(73, 158, 255);
+    border-radius: 50%;
+    margin-bottom: 10px;
+    background: transparent;
+    position: relative;
+    z-index: 0;
+}
+
+section#services > .container > .service > .icon > img{
+    display: flex;
+    width: 65%;
+    height: 65%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+section#services > .container > .service > .title{
+    font-size: 100%;
+    font-weight: 800;
+    white-space: normal;
+    word-wrap: break-word;
+    margin-bottom: 7px;
+    text-align: center;
+}
+
+section#services > .container > .service > .content{
+    font-size: 80%;
+    font-weight: 400;
+    white-space: normal;
+    word-wrap: break-word;
+    text-align: center;
+}
+
+.header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding-bottom: 15px;
+    padding-top: 25px;
+    background: rgb(247, 247, 247);
+}
+
+.header > .title,
+.header > .subtitle{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    font-weight: 900;
+    font-size: 130%;
+    text-align: center;
+}
+
+.header > .subtitle{
+    font-size: 100%;
+    font-weight: 500;
+    font-style: italic;
+}
+
+
+footer > #article{
+    display: flex;
+    justify-content: space-between;
+    align-items: stretch;
+    flex-wrap: wrap;
+    background: rgb(32, 32, 32);
+    border-top: 5px solid rgb(110, 178, 255);
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+footer > #article > *{
+    display: flex;
+    justify-content: flex-start;
+    color: #d3d3d3;
+    flex-wrap: wrap;
+    align-items: stretch;
+}
+
+footer > #article > article{
+    display: flex;
+    padding-bottom: 10px;
+    color: rgb(247, 247, 247);
+    justify-content: flex-start;
+    color: #d3d3d3;
+    flex-grow: 1;
+    flex-wrap: wrap;
+}
+
+footer > #article > article > *{
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+footer > #article > aside{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+footer > #article > aside > .socials{
+    display: flex;
+    justify-content: flex-end;
+    align-items: stretch;
+}
+
+footer > #article > aside > .socials > .social{
+    display: flex;
+    align-items: center;
+    background: rgb(230, 230, 230);
+    border: 0.3px solid rgb(110, 178, 255);
+    width: 35px;
+    height: 35px;
+    position: relative;
+    z-index: 0;
+    overflow: hidden;
+    border-radius: 50%;
+    margin: 0 10px 10px 0;
+}
+
+footer > #article > aside > .socials > .social > img{
+    display: flex;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    object-fit: cover;
+    z-index: 1;
+}
+
+footer > #copy{
+    background: rgb(0, 0, 0);
+    color: rgb(110, 178, 255);
+}
+
+footer > #copy > *{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+}
+
+/*Mobile devices*/
+@media screen and (max-width: 599px){
+    header > .parent,
+    footer > .parent,
+    main > .parent{
+        padding: 10px 3%;
+    }
+
+    header > .contact > .phone,
+    header > .contact > .email{
+        flex-grow: 1;
+        border: unset;
+    }
+
+    header > .contact > .email{
+        padding-left: 0px;
+        padding-right: 0px;
+    }
+
+    header > .contact > .socials{
+        display: none;
+    }
+
+    header > .site > .about{
+        display: none;
+    }
+
+    header > .navigation{
+        flex-grow: 1;
+    }
+
+    header > .navigation > nav{
+        flex-grow: 1;
+    }
+
+    header > .navigation > nav > a{
+        display: flex;
+        padding: 10px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    header > .navigation > nav > a:not(:last-child){
+        margin-right: unset;
+    }
+
+    main > .parent.form > .container{
+        padding: 10px 10px;
+    }
+
+    main > .parent.form > .container > .input{
+        width: auto;
+        flex-grow: 1;
+        margin: 0 0 15px 0;
+    }
+
+    section#filter > .container > .sections,
+    section#filter > .container > .sections > .types,
+    section#filter > .container > .search{
+        justify-content: center;
+        align-items: stretch;
+        flex-wrap: wrap;
+        width: 100%;
+    }
+
+    section#filter > .container > .sections > .types{
+        justify-content: center;
+    }
+
+    section#filter > .container > .sections > .types > .section{
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > *{
+        display: flex;
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > .section.all{
+        width: 105px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .icon{
+        width: 40px;
+        height: 40px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .name{
+        width: 100%;
+        white-space: normal;
+        word-wrap: break-word;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search{
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .text-search > .label{
+        width: 100%;
+        margin-right: unset;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .text-search > input,
+    section#filter > .container > .search > .price > input{
+        width: 100%;
+        margin-right: unset;
+    }
+
+    section#filter > .container > .search > select{
+        width: 100%;
+        margin-right: unset;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .price{
+        margin-bottom: unset;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .price > *{
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    section#filter > .container > .search > .price > .label{
+        display: flex;
+        justify-content: center;
+        align-content: center;
+    }
+
+    section#filter > .container > .search > .submit{
+        justify-content: center;
+    }
+
+    section#properties{
+        overflow: auto;
+    }
+
+    section#properties > .container > .property{
+        margin: 0 0 15px 0;
+    }
+
+    section#properties > .container > .property > .preview > *{
+        width: 25px;
+        height: 25px;
+    }
+
+    #viewProperty > .images > .screen > .properties > .actions > .report > .container{
+        display: none;
+        right: -240px;
+        width: 240px;
+    }
+
+    #viewProperty > .images > .folder > *{
+        display: flex;
+        width: 35px;
+        height: 35px;
+        object-fit: cover;
+        margin-right: 10px;
+        cursor: pointer;
+    }
+
+    section#services > .container > .service{
+        width: 100%;
+    }
+
+    section#services > .container > .service:not(:last-child){
+        margin-right: unset;
+    }
+
+    section#services > .container > .service > *{
+        display: flex;
+        width: 100%;
+        justify-content: center;
+        align-items: center;
+    }
+
+    section#services > .container > .service > .icon{
+        width: 40px;
+        height: 40px;
+    }
+}
+
+/*Tablets, ipads and other bigger devces*/
+@media screen and (min-width: 600px) and (max-width: 999px){
+    header > .parent,
+    footer > .parent,
+    main > .parent{
+        padding: 10px 6%;
+    }
+
+    header > .contact > .phone,
+    header > .contact > .email{
+        margin: unset;
+        white-space: normal;
+        word-wrap: break-word;
+        margin-bottom: 10px;
+        width: 45%;
+        justify-content: flex-end;
+        padding-right: 4%;
+    }
+
+    header > .contact > .email{
+        padding-right: unset;
+        padding-left: 4%;
+        justify-content: flex-start;
+    }
+
+    header > .contact > .socials{
+        width: 100%;
+        margin-left: unset;
+    }
+
+    header > .site,
+    header > .navigation{
+        flex-wrap: wrap;
+    }
+
+    header > .site > .about{
+        width: 100%;
+        flex-wrap: nowrap;
+    }
+
+    header > .site > .about > *{
+        flex-wrap: wrap;
+    }
+
+    header > .site > .about > * > .icon{
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+
+    header > .site > .about > * > .content{
+        width: 100%;
+    }
+
+    header > .navigation{
+        justify-content: center;
+    }
+
+    header > .navigation > nav{
+        justify-content: center;
+    }
+
+    main > .parent.form > .container{
+        padding: 10px 15px;
+    }
+
+    main > .parent.form > .container > .input{
+        width: 270px;
+        margin: 0 15px 15px 0;
+    }
+
+    section#filter > .container > .sections,
+    section#filter > .container > .sections > .types,
+    section#filter > .container > .search{
+        width: 100%;
+    }
+
+    section#filter > .container > .sections > .types{
+        justify-content: center;
+    }
+
+    section#filter > .container > .sections > .types > .section{
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > *{
+        display: flex;
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > .section.all{
+        width: 150px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .icon{
+        width: 50px;
+        height: 50px;
+    }
+
+    section#filter > .container > .sections > .types > .section > .name{
+        width: 100%;
+        white-space: normal;
+        word-wrap: break-word;
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+    }
+
+    section#filter > .container > .search > .submit{
+        justify-content: center;
+    }
+
+    section#services > .container > .service > .icon{
+        width: 45px;
+        height: 45px;
+    }
+
+    section#properties > .container > .property{
+        width: 250px;
+    }
+
+    section#properties > .container > .property > .details > .others > .options > .container{
+        width: 100px;
+    }
+
+    section#properties > .container > .property > .details > .others > .options > .container > .report > .container{
+        width: 140px;
+        left: -140px;
+    }
+}

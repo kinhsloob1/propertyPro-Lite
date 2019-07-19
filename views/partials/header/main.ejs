@@ -1,0 +1,66 @@
+<%const {active = ''} = locals;%>
+<header>
+    <div class="contact parent">
+        <div class="phone">Phone: 08102829763</div>
+        <div class="email">Email: kingsloob1@gmail.com</div>
+        <div class="socials">
+            <a class="social">
+                <img src="<%=mountPoint%>assets/images/socials/facebook.png">
+            </a>
+            <a class="social">
+                <img src="<%=mountPoint%>assets/images/socials/twitter.png">
+            </a>
+            <a class="social">
+                <img src="<%=mountPoint%>assets/images/socials/instagram.png">
+            </a>
+            <a class="social">
+                <img src="<%=mountPoint%>assets/images/socials/google.png">
+            </a>
+        </div>
+    </div>
+    <div class="site parent">
+        <div class="logo">
+            <img src="<%=mountPoint%>assets/images/logo.png">
+        </div>
+        <div class="about">
+            <div class="phone">
+                <div class="icon">
+                    <img src="<%=mountPoint%>assets/images/phone.png">
+                </div>
+                <div class="content">
+                    08102829763
+                    <br />
+                    kingsloob1@gmail.com
+                </div>
+            </div>
+            <div class="address">
+                <div class="icon">
+                    <img src="<%=mountPoint%>assets/images/address.png">
+                </div>
+                <div class="content">
+                    Plot 5 Road 4 Gbei avenue nkpolu rumigbo portharcourt
+                </div>
+            </div>
+            <div class="work">
+                <div class="icon">
+                    <img src="<%=mountPoint%>assets/images/work.png">
+                </div>
+                <div class="content">
+                    10am - 4pm
+                    <br />
+                    Monday - Friday
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navigation parent">
+        <nav>
+            <a href="<%=mountPoint%>" <%-(active === 'home' ? 'class="active"' : '')%>>Home</a>
+            <a href="<%=mountPoint%>properties" <%-(active === 'properties' ? 'class="active"' : '')%>>Properties</a>
+            <a href="<%=mountPoint%>/auth/signin" <%-(active === 'signin' ? 'class="active"' : '')%>>Sign In</a>
+            <a href="<%=mountPoint%>/auth/signup" <%-(active === 'signup' ? 'class="active"' : '')%>>Sign Up</a>
+            <a href="<%=mountPoint%>/property/add" <%-(active === 'addProperty' ? 'class="active"' : '')%>>post property</a>
+            <a href="<%=mountPoint%>/auth/password-reset" <%-(active === 'resetPassword' ? 'class="active"' : '')%>>Forgot password</a>
+        </nav>
+    </div>
+</header>
