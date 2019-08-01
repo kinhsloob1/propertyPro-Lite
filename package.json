@@ -10,8 +10,10 @@
     "server:production": "cross-env NODE_ENV=production node ./dist/bin/index.js",
     "dev": "npm-run-all kill_dev_server server",
     "clean": "rimraf dist",
-    "build": "npm-run-all clean babel ./src --out-dir dist",
-    "production": "server:production",
+    "first:build": "npm-run-all clean",
+    "main:build": "babel ./src --out-dir dist",
+    "build": "npm-run-all first:build main:build",
+    "production": "npm-run-all server:production",
     "kill_dev_server": "kill-port 3000",
     "watch": "nodemon"
   },
