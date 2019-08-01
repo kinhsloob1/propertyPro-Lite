@@ -5,13 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test": "cross-env NODE_ENV=test mocha \"test/**/test.main.js\" --require @babel/register --require core-js --require regenerator-runtime --exit",
-    "start": "npm run prod",
+    "start": "npm run prodction",
     "server": "cross-env NODE_ENV=development babel-node ./src/bin/index.js",
-    "server:prod": "cross-env NODE_ENV=production node ./dist/bin/index.js",
+    "server:production": "cross-env NODE_ENV=production node ./dist/bin/index.js",
     "dev": "npm-run-all kill_dev_server server",
     "clean": "rimraf dist",
-    "build": "babel ./src --out-dir dist",
-    "prod": "npm-run-all clean build server:prod",
+    "build": "npm-run-all clean babel ./src --out-dir dist",
+    "production": "server:production",
     "kill_dev_server": "kill-port 3000",
     "watch": "nodemon"
   },

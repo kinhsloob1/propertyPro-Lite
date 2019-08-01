@@ -6,6 +6,9 @@ import {
   addProperty,
   updateProperty,
   deleteProperty,
+  deleteUploadedFile,
+  deletePropertyImage,
+  generateCloudinaryHash,
 } from '../../../../controllers/properties/index';
 import soldRouter from './sold/index';
 import flagRouter from './flag/index';
@@ -16,12 +19,16 @@ const router = Router({
 });
 
 router.post('/', enforceLogged, addProperty);
-router.route('/:propertyId')
+router.post('/generate_cloudinary_hash', enforceLogged, generateCloudinaryHash);
+router.route('/:propertyId(\\d{1,})')
   .get([processProperty], getPropertyData)
   .patch([processProperty, enforceLogged, ensureUserHasPermission], updateProperty)
   .delete([processProperty, enforceLogged, ensureUserHasPermission], deleteProperty);
 
-router.use('/:propertyId/sold', soldRouter);
-router.use('/:propertyId/flag', flagRouter);
-router.use('/:propertyId/flags', flagsRouter);
+router.delete('/file', enforceLogged, deleteUploadedFile);
+router.delete('/:propertyId(\\d{1,})/image', [processProperty, enforceLogged, ensureUserHasPermission], deletePropertyImage);
+
+router.use('/:propertyId(\\d{1,})/sold', soldRouter);
+router.use('/:propertyId(\\d{1,})/flag', flagRouter);
+router.use('/:propertyId(\\d{1,})/flags', flagsRouter);
 export default router;

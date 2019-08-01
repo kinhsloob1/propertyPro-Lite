@@ -34,8 +34,8 @@ intervention location.
 
 #### Where to get the User interface
 
-Navigate to https://kinhsloob1.github.io/propertyPro-Lite/UI/index.html to view the pages
+Navigate to https://kingsley-property-pro-lite.herokuapp.com/api/v1 to access live project
 
-#### Author: Okafor Obinna KIngsley
+#### Author: Okafor Obinna Kingsley
 
 #### License: ![GitHub](https://img.shields.io/github/license/kinhsloob1/propertyPro-Lite.svg)

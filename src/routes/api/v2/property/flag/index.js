@@ -9,7 +9,7 @@ const router = Router({
 });
 
 router.post('/', [processProperty, enforceLogged], flagProperty);
-router.route('/:propertyFlagId')
+router.route('/:propertyFlagId(\\d{1,})')
   .patch(
     [
       processProperty,

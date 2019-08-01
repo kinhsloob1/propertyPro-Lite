@@ -122,13 +122,15 @@ class User extends Map {
         this.set('password', createHash('sha512').update(value).digest('hex'));
       }
 
-      value = String(passwordConfirmation);
-      if (passwordConfirmation === null) {
-        if (isForRegistration) {
-          errors.push('Password confirmation is required');
+      if (isForUpdate || isForRegistration) {
+        value = String(passwordConfirmation);
+        if (passwordConfirmation === null) {
+          if (isForRegistration) {
+            errors.push('Password confirmation is required');
+          }
+        } else if (this.getPassword() !== createHash('sha512').update(value).digest('hex')) {
+          errors.push('Passwords does not match');
         }
-      } else if (!(this.getPassword() === createHash('sha512').update(value).digest('hex'))) {
-        errors.push('Passwords does not match');
       }
 
       if (isForReset && canRemember) {
@@ -146,7 +148,7 @@ class User extends Map {
         } else if (passwordConfirmation === null) {
           errors.push('new password confirmation is required');
         } else if ((createHash('sha512').update(passwordConfirmation).digest('hex') !== newPasswordDigest)) {
-          errors.push('Password confirmayion does not match new password');
+          errors.push('Password confirmation does not match new password');
         } else {
           this.set('new_password', newPasswordDigest);
         }

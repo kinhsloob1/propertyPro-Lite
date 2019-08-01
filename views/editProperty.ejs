@@ -123,7 +123,10 @@
         mountPoint
     }); %>
 </body>
-<%-include('partials/footer/scripts'); %>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<%-include('partials/footer/scripts',{
+    mountPoint
+}); %>
 <script>
     window.addEventListener('load', function () {
         let pages = new Pages();

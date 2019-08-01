@@ -2,6 +2,7 @@ import { randomBytes } from 'crypto';
 import { Reply, ReplyFor } from '../utils';
 import { JwtManager } from '../token';
 import { parseData } from './user/index';
+import mailgun from '../mailgun';
 
 class Users {
   static getDb(req) {
@@ -129,7 +130,7 @@ class Users {
 
   static getUser(req) {
     const userDb = Users.getDb(req);
-    const userId = parseInt(req.params.id, 10) || 0;
+    const userId = parseInt(req.params.userId, 10) || 0;
     return userDb.get(userId);
   }
 
@@ -272,7 +273,6 @@ class Users {
       params: {
         userEmail,
       },
-      data,
       body: clientResetData,
     } = req;
 
@@ -323,7 +323,6 @@ class Users {
     }
 
     return (async () => {
-      const mailer = data.get('mailer');
       const mailData = {
         from: `Support <support@${req.get('host')}>`,
         to: userEmail,
@@ -335,7 +334,7 @@ class Users {
 
       try {
         await new Promise((resolve, reject) => {
-          mailer.messages().send(mailData, (error, body) => {
+          mailgun.messages().send(mailData, (error, body) => {
             if (error) {
               return reject(error);
             }

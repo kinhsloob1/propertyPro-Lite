@@ -1,15 +1,7 @@
-import * as Cloud from 'cloudinary';
 import { Reply, ReplyFor } from '../utils';
 import { parseData } from './property/index';
+import cloudinary from '../cloudinary';
 import * as flagSpecData from './property/flag/index';
-
-const {
-  v2: {
-    utils: {
-      api_sign_request: signUploadData,
-    },
-  },
-} = Cloud;
 
 const { parseData: parsePropertyFlagData } = flagSpecData;
 
@@ -35,10 +27,16 @@ class Properties {
       ...mainParams
     } = params;
 
-    const signatuue = signUploadData(mainParams, data.get('env').get('CLOUDINARY_API_SECRET'));
+    const signature = cloudinary
+      .utils
+      .api_sign_request(
+        mainParams,
+        data.get('envs').get('CLOUDINARY_API_SECRET'),
+      );
+
     const reply = Reply('Signature created succesfully', true);
     reply.setObjectData({
-      signatuue,
+      signature,
     });
     reply.setStatusCode(200);
     return reply.send(res);
@@ -83,7 +81,7 @@ class Properties {
       },
     });
     reply.setStatusCode(201);
-    reply.addHeader('Location', `/v1/property/${id}`);
+    reply.addHeader('Location', `/api/v1/property/${id}`);
     return reply.send(res);
   }
 
@@ -138,6 +136,8 @@ class Properties {
           const owner = property.get(key);
           object.ownerEmail = owner.get('email');
           object.ownerPhoneNumber = owner.get('phoneNumber');
+          object.ownerAddress = owner.get('address');
+          object.ownerIsAdmin = owner.get('is_admin');
         }
           break;
 
@@ -181,15 +181,105 @@ class Properties {
     return reply.send(res);
   }
 
-  static deleteProperty(req, res) {
+  static async deleteProperty(req, res) {
     const { data } = req;
     const property = data.get('Property');
     const propertiesDb = Properties.getDb(req);
 
-    propertiesDb.delete(property.get('id'));
-    return Reply('Property removed succesfully succesfully')
-      .setStatusCode(204)
-      .send(res);
+    const images = property.get('images');
+    const promises = [];
+    images.forEach(({ public_id: publicId }) => {
+      promises.push(new Promise((success, error) => {
+        cloudinary.uploader.destroy(
+          publicId,
+          {
+            invalidate: true,
+          },
+          (err, resp) => {
+            const { result = null } = resp || {};
+            if (result === 'ok') {
+              success();
+            }
+
+            error(err);
+          },
+        );
+      }));
+    });
+
+    try {
+      await Promise.all(promises);
+      propertiesDb.delete(property.get('id'));
+      return Reply('Property removed succesfully succesfully')
+        .setStatusCode(204)
+        .send(res);
+    } catch (error) {
+      return Reply('An error occured while deleting property image')
+        .setStatusCode(400)
+        .send(res);
+    }
+  }
+
+  static deleteUploadedFile(req, res) {
+    const { query: params } = req;
+    const { public_id: publicId = null } = params;
+
+    if (typeof publicId !== 'string') {
+      return Reply('Ooops file url is required').send(res);
+    }
+
+    return cloudinary.uploader.destroy(
+      publicId,
+      {
+        invalidate: true,
+      },
+      (err, resp) => {
+        const { result = null } = resp || {};
+        if (result === 'ok') {
+          return Reply('file removed succesfully', true)
+            .setStatusCode(200)
+            .send(res);
+        }
+
+        return Reply('An error occured while deleting file')
+          .setStatusCode(400)
+          .send(res);
+      },
+    );
+  }
+
+  static deletePropertyImage(req, res) {
+    const { query: params, data } = req;
+    const property = data.get('Property');
+    const { public_id: publicId = null } = params;
+
+    if (typeof punlicId !== 'string') {
+      return Reply('Ooops property image url is required').send(res);
+    }
+
+    return cloudinary.uploader.destroy(
+      publicId,
+      {
+        invalidate: true,
+        resource_type: 'image',
+      },
+      (err, resp) => {
+        const { result = null } = resp || {};
+        if (result === 'ok') {
+          let images = property.get('images') || [];
+          images = images.filter(image => image.public_id !== publicId);
+          property.set('images', images);
+
+          return Reply('image removed succesfully', true)
+            .setStatusCode(200)
+            .send(res);
+        }
+
+        return Reply('An error occured while deleting image')
+          .setStatusCode(400)
+          .send(res);
+      },
+    );
   }
 
   static getProperties(req, res) {
@@ -432,6 +522,8 @@ export const {
   getPropertyData,
   updateProperty,
   deleteProperty,
+  deleteUploadedFile,
+  deletePropertyImage,
   getProperties,
   getPropertyById,
   setPropertySold,
@@ -440,5 +532,6 @@ export const {
   updatePropertyFlag,
   deletePropertyFlag,
   getPropertyFlags,
+  generateCloudinaryHash,
 } = Properties;
 export default Properties;

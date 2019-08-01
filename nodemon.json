@@ -1,9 +1,10 @@
 {
     "exec": "npm run dev",
     "watch": [
-        "src/*",
-        "public/*",
-        "views/*"
+        "src/*"
     ],
-    "ext": "js, html, css, json, ejs"
+    "ext": "js, html, css, json, ejs",
+    "ignore": [
+        "main.js"
+    ]
 }

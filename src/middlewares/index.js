@@ -1,4 +1,3 @@
-import mailGun from 'mailgun-js';
 import { ReplyFor } from '../controllers/utils';
 
 class generalMiddleware {
@@ -11,12 +10,7 @@ class generalMiddleware {
       req.data = new Map();
       req.data
         .set('envs', new Map(Object.entries(process.env)))
-        .set('database', database)
-        .set('mailer', mailGun({
-          apiKey: (req.data.get('envs').get('MAILGUN_API_KEY') || 'dummystring'),
-          domain: req.get('host'),
-          endpoint: '/v3',
-        }));
+        .set('database', database);
 
       return next();
     };

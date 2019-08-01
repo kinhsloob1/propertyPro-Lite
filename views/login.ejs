@@ -32,7 +32,7 @@
                     <input type="password" name="password" placeholder="**********" required>
                 </div>
                 <div class="submit">
-                    <button>Submit</button>
+                    <button disabled>Submit</button>
                 </div>
             </form>
         </section>
@@ -41,7 +41,9 @@
         mountPoint
     }); %>
 </body>
-<%-include('partials/footer/scripts'); %>
+<%-include('partials/footer/scripts',{
+    mountPoint
+}); %>
 <script>
     window.addEventListener('load', function () {
         let pages = new Pages();

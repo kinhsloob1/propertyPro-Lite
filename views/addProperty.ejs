@@ -34,8 +34,7 @@
                     <div class="holder"></div>
                     <label>Please select an image or multiple images for property</label>
                     <div class="item">
-                        <label>Select image</label>
-                        <input type="file" multiple />
+                        <button> Select Images </button>
                     </div>
                 </div>
                 <div class="input title">
@@ -46,11 +45,11 @@
                     <label>Please Select property type</label>
                     <select name="type" required>
                         <option value="" selected disabled>Select property type</option>
-                        <option value="4 bed">4 bedroom</option>
-                        <option value="3 bed">3 bedroom</option>
-                        <option value="2 bed">2 bedroom</option>
-                        <option value="1 bed">1 bedroom</option>
-                        <option value="1 room">self contain</option>
+                        <option value="4 bedroom">4 bedroom</option>
+                        <option value="3 bedroom">3 bedroom</option>
+                        <option value="2 bedroom">2 bedroom</option>
+                        <option value="1 bedroom">1 bedroom</option>
+                        <option value="self contain">self contain</option>
                     </select>
                 </div>
                 <div class="input transfer_type">
@@ -62,37 +61,44 @@
                         <option value="rent-year">rent / year</option>
                     </select>
                 </div>
-                <div class="input rest_room">
-                    <label>Please the no of rest room(s) in property</label>
-                    <select name="rest_room" required>
-                        <option value="" selected disabled>No of rest room(s)</option>
-                        <option value="0">No rest room</option>
-                        <option value="1">1</option>
-                        <option value="2">2</option>
-                        <option value="3">3</option>
-                        <option value="4">4</option>
-                        <option value="5">5</option>
-                        <option value="6">6</option>
-                        <option value="7">7</option>
-                        <option value="8">8</option>
-                    </select>
+                <div class="input price">
+                    <label>Please insert property price</label>
+                    <input type = "number" name="price" placeholder = "300000000.0000" required>
                 </div>
                 <div class="input state">
                     <label>Please select the state property is cited in</label>
                     <select name="state" required>
                         <option value="" selected disabled>Select a state</option>
-                        <option value="lagos">Lagos</option>
                     </select>
                 </div>
                 <div class="input city">
                     <label>Please select the city property is cited in</label>
                     <select name="city" required>
                         <option value="" selected disabled>Select a city</option>
-                        <option value="ikeja">ikeja</option>
                     </select>
                 </div>
+                <div class="input latitude optional">
+                    <label>Please insert your property latitude as shown on the map or <a href="https://www.latlong.net/" target="_blank">click this url to get your latitude</a></label>
+                    <input type="number" name="latitude" placeholder=82.45678952452 min = -90 max = 90 step = 0.000000000000000001>
+                </div>
+                <div class="input longitude optional">
+                    <label>Please insert your property longitude as shown on the map <a href="https://www.latlong.net/" target="_blank">click this url to get your longitude</a></label>
+                    <input type="number" name="longitude" placeholder=134.348465635635 min = -180 max = 180 step = 0.000000000000000001>
+                </div>
+                <section id="propertiesMap" class="parent">
+                    <div class="header">
+                        <div class="subtitle">
+                            Select your exact location on the map to get the co ordinates automatically
+                        </div>
+                    </div>
+                    <div class="container" id="mapContainer"></div>
+                </section>
+                <div class="input address">
+                    <label>Please insert property address</label>
+                    <textarea type="text" name="address" placeholder="property address" required></textarea>
+                </div>
                 <div class="input description">
-                    <label>Please descript property exhaustively</label>
+                    <label>Please describe property exhaustively</label>
                     <textarea type="text" name="description" placeholder="property description" required></textarea>
                 </div>
                 <div class="submit">
@@ -105,12 +111,15 @@
         mountPoint
     }); %>
 </body>
-<%-include('partials/footer/scripts'); %>
+<script src="https://widget.cloudinary.com/v2.0/global/all.js" type="text/javascript"></script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBWktcxXcrO73JIKfF41Jg5ENPtHqZvNVw&libraries=places"></script>
+<%-include('partials/footer/scripts',{
+    mountPoint
+}); %>
 <script>
     window.addEventListener('load', function () {
         let pages = new Pages();
         pages.postPropertyPage.init();
     });
 </script>
-
 </html>

@@ -218,6 +218,7 @@ main > .parent.form > .container{
 main > .parent.form > .container > .input{
     display: flex;
     width: 320px;
+    flex-grow: 1;
     flex-wrap: wrap;
     margin: 0 20px 15px 0;
 }
@@ -226,10 +227,48 @@ main > .parent.form > .container > .input > *{
     display: flex;
     width: 100%;
     margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+}
+
+main > .parent.form > .container > .input > input[type="radio"],
+main > .parent.form > .container > .input > input[type="checkbox"]
+{
+    width: auto;
+    margin: 10px 5px 10px 20px;
 }
 
 main > .parent.form > .container > .input > *:last-child{
     margin-bottom: unset;
+}
+
+main > .parent.form > .container > .input.inline{
+    align-items: stretch;
+    justify-content: center;
+}
+
+main > .parent.form > .container > .input.inline > *:not(label){
+    display: flex;
+    width: auto;
+    margin-bottom: 5px;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+main > .parent.form > .container > .input.inline > input[type="radio"],
+main > .parent.form > .container > .input.inline > input[type="checkbox"]
+{
+    margin: 0 5px 0 20px;
+}
+
+main > .parent.form > .container > .input.inline > span
+{
+    margin: 0 5px 5px;
+}
+
+main > .parent.form > .container > .hidden-input{
+    display: none;
 }
 
 main > .parent.form > .container > .input > label{
@@ -253,7 +292,7 @@ main > .parent.form > .container > .input > select{
 }
 
 main > .parent.form > .container > .input > textarea{
-    height: 80px;
+    height: 150px;
     border: 0.3px solid rgb(161, 161, 161);
     border-radius: 5px;
     outline-style: unset;
@@ -657,6 +696,11 @@ section#properties > .container > .property > .display > .tags > .hot{
     background: rgb(206, 0, 0);
 }
 
+section#properties > .container > .property > .display > .tags > .sold{
+    background: rgb(71, 71, 71);
+    color: rgb(247, 247, 247);
+}
+
 section#properties > .container > .property > .display > .amount{
     display: flex;
     max-width: 100%;
@@ -712,6 +756,8 @@ section#properties > .container > .property > .details{
 
 section#properties > .container > .property > .details > .description{
     width: 100%;
+    max-height: 60px;
+    overflow: hidden;
     display: flex;
     padding: 10px 3px;
     font-size: 85%;
@@ -952,6 +998,12 @@ section#properties > .container > .property > .details > .others > .options > .c
     background-color: rgb(58, 150, 255);
 }
 
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit:disabled,
+section#properties > .container > .property > .details > .others > .options > .container > .report > .container > .submit:hover:disabled{
+    cursor: not-allowed;
+    background-color: rgb(156, 156, 156);
+}
+
 section#properties > .container > .property > .details > .others > .options > .container > .report:hover > .container{
     display: flex;
 }
@@ -1010,7 +1062,7 @@ section#propertiesMap > .container{
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 350px;
+    height: 500px;
     width: 100%;
     position: relative;
     z-index: 1;
@@ -1198,6 +1250,12 @@ section#propertiesMap > .container{
     background-color: rgb(58, 150, 255);
 }
 
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit:disabled,
+#viewProperty > .images > .screen > .properties > .actions > .report > .container > .submit:hover:disabled{
+    cursor: not-allowed;
+    background-color: rgb(156, 156, 156);
+}
+
 #viewProperty > .images > .screen > .properties > .actions > .report:hover > .container{
     display: flex;
 }
@@ -1253,6 +1311,7 @@ section#propertiesMap > .container{
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
+    padding: 10px;
     padding-bottom: 20px;
     padding-top: 20px;
     background: rgb(247, 247, 247);
@@ -1277,10 +1336,6 @@ section#propertiesMap > .container{
 
 #postProperty > .rules > *:not(:last-child){
     margin-bottom: 12px;
-}
-
-#postProperty > .container > .input{
-    width: 100%;
 }
 
 #postProperty > .container > .input.image{
@@ -1311,9 +1366,8 @@ section#propertiesMap > .container{
     width: 180px;
     height: 250px;
     overflow: hidden;
-    border: 5px dashed rgb(73, 158, 255);
+    border: 0.3px dashed rgb(73, 158, 255);
     border-style: groove;
-    border-radius: 15px;
     background: rgb(100,100,100);
     z-index: 0;
     margin: 0 10px 10px 0;
@@ -1347,6 +1401,7 @@ section#propertiesMap > .container{
     font-size: 160%;
     font-weight: 800;
     border: unset;
+    cursor: pointer;
 }
 
 #postProperty > .container > .input.image > label,
@@ -1368,8 +1423,7 @@ section#propertiesMap > .container{
     margin-bottom: 10px;
 }
 
-#postProperty > .container > .input.image > .item > label,
-#postProperty > .container > .input.image > .item > input{
+#postProperty > .container > .input.image > .item > button{
     font-size: 80%;
     font-weight: 700;
     margin-bottom: 15px;
@@ -1385,30 +1439,17 @@ section#propertiesMap > .container{
     color: rgb(12, 12, 12);
     cursor: pointer;
     text-align: center;
+    border: none;
 }
 
-#postProperty > .container > .input.image > .item > input:hover:not(:disabled),
-#postProperty > .container > .input.image > .item > input:hover:not(:disabled) ~ label{
+#postProperty > .container > .input.image > .item > button:hover:not(:disabled){
     cursor: pointer;
     background: rgb(0, 79, 168);
 }
 
-#postProperty > .container > .input.image > .item > input:disabled,
-#postProperty > .container > .input.image > .item > input:disabled ~ label{
+#postProperty > .container > .input.image > .item > button:disabled{
     background: rgb(100,100,100);
     cursor: not-allowed;
-}
-
-#postProperty > .container > .input.image > .item > input{
-    opacity: 0
-}
-
-#postProperty > .container > .input > label,
-#postProperty > .container > .input > input,
-#postProperty > .container > .input > select,
-#postProperty > .container > .input > textarea,
-#postProperty > .container > .input > div.error{
-    width: 60%;
 }
 
 #postProperty > .container > .input{
@@ -1857,7 +1898,7 @@ footer > #copy > *{
     }
 
     main > .parent.form > .container > .input{
-        width: 270px;
+        width: 300px;
         margin: 0 15px 15px 0;
     }
 
@@ -1919,4 +1960,101 @@ footer > #copy > *{
         width: 140px;
         left: -140px;
     }
+}
+
+#loader{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background: rgba(50,50,50,0.5);
+    flex-wrap: wrap;
+    z-index: 999999999999;
+    top: 0;
+    left: 0;
+}
+
+#loader > .container{
+    width: 200px;
+    display: flex;
+    background: rgb(255,255,255);
+    border-top: 15px solid rgb(0, 81, 187);
+    flex-wrap: wrap;
+    position: relative;
+    transition: all 0.3s ease-in-out;
+}
+
+#loader > .container > .header{
+    display: flex;
+    width: 100%;
+    height: auto;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: nowrap;
+}
+
+#loader > .container > .header > *{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    background: inherit;
+}
+
+#loader > .container > .header > .title{
+    flex-grow: 1;
+    font-size: 90%;
+    font-weight: 700;
+    text-transform: capitalize;
+    padding: 5px 10px;
+    justify-content: center;
+    text-align: center;
+}
+
+#loader > .container > .header > button.close{
+    width: 60px;
+    font-size: 130%;
+    color: rgb(139, 1, 1);
+    font-weight: 700;
+    border: unset;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+#loader > .container > .header > button.close:hover{
+    color: rgb(253, 36, 36);
+    font-size: 180%;
+}
+
+#loader > .container > .image,
+#loader > .container > .text{
+    display: flex;
+    width: 100%;
+    height: 120px;
+    position: relative;
+    z-index: 1;
+    justify-content: center;
+    align-items: center;
+}
+
+#loader > .container > .text{
+    padding: 10px;
+    text-align: center;
+    font-size: 80%;
+    display: none;
+    height: auto;
+}
+
+#loader > .container > .image > img{
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
 }
